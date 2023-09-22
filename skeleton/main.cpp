@@ -9,6 +9,7 @@
 #include "callbacks.hpp"
 
 #include <iostream>
+#include "Particle.h"
 
 std::string display_text = "This is a test";
 
@@ -29,6 +30,7 @@ PxPvd*                  gPvd        = NULL;
 PxDefaultCpuDispatcher*	gDispatcher = NULL;
 PxScene*				gScene      = NULL;
 ContactReportCallback gContactReportCallback;
+Particle* myParticle;
 
 
 // Initialize physics engine
@@ -54,6 +56,7 @@ void initPhysics(bool interactive)
 	sceneDesc.filterShader = contactReportFilterShader;
 	sceneDesc.simulationEventCallback = &gContactReportCallback;
 	gScene = gPhysics->createScene(sceneDesc);
+	myParticle = new Particle(Vector3(0, 0, 0), Vector3(10, 0, 0));
 	}
 
 
@@ -66,6 +69,8 @@ void stepPhysics(bool interactive, double t)
 
 	gScene->simulate(t);
 	gScene->fetchResults(true);
+	myParticle->integrate(t);
+
 }
 
 // Function to clean data
