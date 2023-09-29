@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include "Particle.h"
+#include<vector>
 
 std::string display_text = "This is a test";
 
@@ -30,7 +31,8 @@ PxPvd*                  gPvd        = NULL;
 PxDefaultCpuDispatcher*	gDispatcher = NULL;
 PxScene*				gScene      = NULL;
 ContactReportCallback gContactReportCallback;
-Particle* myParticle;
+
+std::vector<Particle*> myBullets;
 
 
 // Initialize physics engine
@@ -50,13 +52,13 @@ void initPhysics(bool interactive)
 
 	// For Solid Rigids +++++++++++++++++++++++++++++++++++++
 	PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
+
 	sceneDesc.gravity = PxVec3(0.0f, -9.8f, 0.0f);
 	gDispatcher = PxDefaultCpuDispatcherCreate(2);
 	sceneDesc.cpuDispatcher = gDispatcher;
 	sceneDesc.filterShader = contactReportFilterShader;
 	sceneDesc.simulationEventCallback = &gContactReportCallback;
 	gScene = gPhysics->createScene(sceneDesc);
-	myParticle = new Particle(Vector3(0, 0, 0), Vector3(10, 0, 0));
 	}
 
 
@@ -69,7 +71,11 @@ void stepPhysics(bool interactive, double t)
 
 	gScene->simulate(t);
 	gScene->fetchResults(true);
-	myParticle->integrate(t);
+	//Se actualizan las balas
+	if (!myBullets.empty())
+	{
+		for (Particle* p : myBullets) p->integrate(t);
+	}
 
 }
 
@@ -77,6 +83,9 @@ void stepPhysics(bool interactive, double t)
 // Add custom code to the begining of the function
 void cleanupPhysics(bool interactive)
 {
+	//Borra las particulas
+	for (Particle* p : myBullets) delete p;
+
 	PX_UNUSED(interactive);
 
 	// Rigid Body ++++++++++++++++++++++++++++++++++++++++++
@@ -100,6 +109,15 @@ void keyPress(unsigned char key, const PxTransform& camera)
 	{
 	//case 'B': break;
 	//case ' ':	break;
+	case 'P':
+	{
+		//Se crea y se añade al vector de balas
+		std::cout << "pium" << std::endl;
+		PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
+		Particle* myParticle = new Particle(sceneDesc, GetCamera()->getTransform().p,Vector3(), GetCamera()->getDir(), 0.9,8,360,0.02);
+		myBullets.push_back(myParticle);
+		break;
+	}
 	case ' ':
 	{
 		break;
