@@ -5,6 +5,7 @@
 
 #include "core.hpp"
 #include "RenderUtils.hpp"
+#include <iostream>
 using namespace physx;
 class Particle
 {
@@ -21,10 +22,11 @@ private:
 
 public:
 
-	Particle(PxSceneDesc myScene, const PxVec3 pos, Vector3 acce,Vector3 velIni, float damp, float mass, float speed, float scalingValue)
+	Particle(Vector3 gravity, const PxVec3 pos, Vector3 acce, Vector3 velIni, float damp, float mass, float speed, float scalingValue)
 	{
 		pose = PxTransform(pos);
-		myGravity = myScene.gravity*(pow((scalingValue),2));
+		myGravity = gravity*(pow((scalingValue),2));
+		
 		ace = acce;
 		damping = damp;
 		mySpeed = speed*scalingValue;
@@ -37,14 +39,15 @@ public:
 	~Particle()
 	{
 		myShape->release();
-		delete myShape;
 	}
 	void integrate(double t)
 	{
 		vel += ace * t;
-		vel += myGravity* t;
-		vel *= powf(damping, t);
+		vel.x *= powf(damping, t);
+		vel.z *= powf(damping, t);
+		vel += myGravity * t;
 		pose.p += vel * t;
+		std::cout << vel.y << std::endl;
 	}
 
 };

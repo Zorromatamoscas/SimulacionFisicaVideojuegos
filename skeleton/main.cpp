@@ -113,8 +113,7 @@ void keyPress(unsigned char key, const PxTransform& camera)
 	{
 		//Se crea y se añade al vector de balas
 		std::cout << "pium" << std::endl;
-		PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
-		Particle* myParticle = new Particle(sceneDesc, GetCamera()->getTransform().p,Vector3(), GetCamera()->getDir(), 0.9,8,360,0.02);
+		Particle* myParticle = new Particle(Vector3(0,-9.8,0), GetCamera()->getTransform().p, Vector3(0, 0, 0), GetCamera()->getDir(), 0.9, 8, 360, 0.05);
 		myBullets.push_back(myParticle);
 		break;
 	}
