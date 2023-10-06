@@ -19,14 +19,15 @@ private:
 	float myMass;
 	Vector3 myGravity;
 	float mySpeed;
+	float lifeTime;
 
 public:
 
-	Particle(Vector3 gravity, const PxVec3 pos, Vector3 acce, Vector3 velIni, float damp, float mass, float speed, float scalingValue)
+	Particle(Vector3 gravity, const PxVec3 pos, Vector3 acce, Vector3 velIni, float damp, float mass, float speed,float lifeT, float scalingValue)
 	{
 		pose = PxTransform(pos);
 		myGravity = gravity*(pow((scalingValue),2));
-		
+		lifeTime = lifeT;
 		ace = acce;
 		damping = damp;
 		mySpeed = speed*scalingValue;
@@ -38,10 +39,20 @@ public:
 	}
 	~Particle()
 	{
-		myShape->release();
+		if(myShape!=nullptr)myShape->release();
+	}
+
+	bool isAlive()
+	{
+		return lifeTime > 0;
+	}
+	inline Vector3 getPosition()
+	{
+		return pose.p;
 	}
 	void integrate(double t)
 	{
+		lifeTime -= t;
 		vel += ace * t;
 		vel.x *= powf(damping, t);
 		vel.z *= powf(damping, t);

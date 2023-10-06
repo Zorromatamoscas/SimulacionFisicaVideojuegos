@@ -11,6 +11,7 @@
 #include <iostream>
 #include "Particle.h"
 #include<vector>
+#include "ParticleGenerator.h"
 
 std::string display_text = "This is a test";
 
@@ -33,6 +34,7 @@ PxScene*				gScene      = NULL;
 ContactReportCallback gContactReportCallback;
 
 std::vector<Particle*> myBullets;
+ParticleGenerator* myParticles;
 
 
 // Initialize physics engine
@@ -59,6 +61,8 @@ void initPhysics(bool interactive)
 	sceneDesc.filterShader = contactReportFilterShader;
 	sceneDesc.simulationEventCallback = &gContactReportCallback;
 	gScene = gPhysics->createScene(sceneDesc);
+
+	myParticles = new ParticleGenerator(Vector3(0, 0, 0), Vector3(5, 5, 5));
 	}
 
 
@@ -72,10 +76,7 @@ void stepPhysics(bool interactive, double t)
 	gScene->simulate(t);
 	gScene->fetchResults(true);
 	//Se actualizan las balas
-	if (!myBullets.empty())
-	{
-		for (Particle* p : myBullets) p->integrate(t);
-	}
+	myParticles->update(t);
 
 }
 
@@ -84,7 +85,8 @@ void stepPhysics(bool interactive, double t)
 void cleanupPhysics(bool interactive)
 {
 	//Borra las particulas
-	for (Particle* p : myBullets) delete p;
+	//for (Particle* p : myBullets) delete p;
+	delete myParticles;
 
 	PX_UNUSED(interactive);
 
@@ -96,7 +98,6 @@ void cleanupPhysics(bool interactive)
 	PxPvdTransport* transport = gPvd->getTransport();
 	gPvd->release();
 	transport->release();
-	
 	gFoundation->release();
 	}
 
@@ -113,8 +114,7 @@ void keyPress(unsigned char key, const PxTransform& camera)
 	{
 		//Se crea y se añade al vector de balas
 		std::cout << "pium" << std::endl;
-		Particle* myParticle = new Particle(Vector3(0,-9.8,0), GetCamera()->getTransform().p, Vector3(0, 0, 0), GetCamera()->getDir(), 0.9, 8, 360, 0.05);
-		myBullets.push_back(myParticle);
+
 		break;
 	}
 	case ' ':
