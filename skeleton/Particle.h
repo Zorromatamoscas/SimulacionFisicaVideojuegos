@@ -45,6 +45,7 @@ public:
 		vel += ace * t;
 		vel.x *= powf(damping, t);
 		vel.z *= powf(damping, t);
+		vel.y *= powf(damping, t);
 		vel += myGravity * t;
 		pose.p += vel * t;
 		std::cout << vel.y << std::endl;
