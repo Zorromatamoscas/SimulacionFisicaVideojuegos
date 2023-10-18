@@ -39,8 +39,15 @@ public:
 	}
 	~Particle()
 	{
-		if(myShape!=nullptr)myShape->release();
+		if (myShape != nullptr)
+		{
+			DeregisterRenderItem(myShape);
+			myShape->release();
+			myShape = nullptr;
+
+		}
 	}
+	inline void setDuration(float dur) { lifeTime = dur; }
 
 	bool isAlive()
 	{
