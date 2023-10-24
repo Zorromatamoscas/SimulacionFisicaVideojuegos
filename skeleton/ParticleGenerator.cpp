@@ -1,10 +1,9 @@
 #include "ParticleGenerator.h"
 //#include "ParticleSystem.h"
-ParticleGenerator::ParticleGenerator(ParticleSystem* system, int n_particles, Vector3 pos, Vector3 velocity, double frequency, Vector3 gravity) :
-	_system(system), _n_particles(n_particles),
-	_origin(pos), _velocity(velocity), _frec(frequency), _grav(gravity)
+ParticleGenerator::ParticleGenerator(Vector3 pos, Vector3 velocity, Vector3 var, double frequency) :origin(pos), velocity(velocity), frec(frequency),
+variation(var)
 {
-
+	srand((unsigned)time);
 }
 
 //void ParticleGenerator::update(double t)

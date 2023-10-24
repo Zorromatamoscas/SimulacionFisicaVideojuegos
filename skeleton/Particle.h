@@ -20,12 +20,14 @@ private:
 	Vector3 myGravity;
 	float mySpeed;
 	float lifeTime;
+	float scaleValue;
 
 public:
 
 	Particle(Vector3 gravity, const PxVec3 pos, Vector3 acce, Vector3 velIni, float damp, float mass, float speed,float lifeT, float scalingValue)
 	{
 		pose = PxTransform(pos);
+		scaleValue = scalingValue;
 		myGravity = gravity*(pow((scalingValue),2));
 		lifeTime = lifeT;
 		ace = acce;
@@ -49,6 +51,13 @@ public:
 	}
 	inline void setDuration(float dur) { lifeTime = dur; }
 
+	Particle* Particle::clone(Vector3 newPos,Vector3 newVel, Vector3 newAce, float newLifeTime) const {
+		return new Particle(myGravity, newPos, newAce, newVel, damping, myMass, mySpeed, newLifeTime, scaleValue);
+	}
+	Particle* Particle::clone( Vector3 newVel, Vector3 newAce, float newLifeTime) const {
+		return new Particle(myGravity, pose.p, newAce, newVel, damping, myMass, mySpeed, newLifeTime, scaleValue);
+	}
+
 	bool isAlive()
 	{
 		return lifeTime > 0;
@@ -56,6 +65,14 @@ public:
 	inline Vector3 getPosition()
 	{
 		return pose.p;
+	}
+	inline Vector3 setPosition(Vector3 newPos)
+	{
+		pose.p= newPos;
+	}
+	inline Vector3 getVel()
+	{
+		return vel;
 	}
 	void integrate(double t)
 	{

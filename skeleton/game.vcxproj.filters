@@ -14,6 +14,8 @@
       <Filter>RenderItems</Filter>
     </ClCompile>
     <ClCompile Include="ParticleGenerator.cpp" />
+    <ClCompile Include="GeneradorGaussiano.cpp" />
+    <ClCompile Include="GeneradorNormal.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -29,6 +31,8 @@
       <Filter>RenderItems</Filter>
     </ClInclude>
     <ClInclude Include="ParticleGenerator.h" />
+    <ClInclude Include="GeneradorGaussiano.h" />
+    <ClInclude Include="GeneradorNormal.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">
