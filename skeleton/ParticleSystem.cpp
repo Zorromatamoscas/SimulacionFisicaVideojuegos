@@ -1,14 +1,16 @@
 #include "ParticleSystem.h"
+#include <iostream>
 ParticleSystem::ParticleSystem() {
 
 	//Generador Gaussiano
-	Particle* model = new Particle(Vector3(0,-10,0),Vector3(0), Vector3(0), Vector3(0), 0.99, 5, 10, 0, 1, Vector3(0,0,125));
-	ParticleGenerator* ptGen = new GeneradorGaussiano(Vector3(0), Vector3(35), 0.3, model,false);
-	partGenerator.push_back(ptGen);
-	//Generador Uniforme
-	model = new Particle(Vector3(0, -10, 0), Vector3(0), Vector3(0), Vector3(0), 0.99, 5, 10, 0, 1, Vector3(0, 125, 0));
-	ptGen = new GeneradorNormal(Vector3(100, 0, 0), Vector3(35), 0.3, model, false);
-	partGenerator.push_back(ptGen);
+	//Particle* model = new Particle(Vector3(0,-10,0),Vector3(0), Vector3(0), Vector3(0), 0.99, 5, 10, 0, 1, Vector3(0,0,125));
+	//ParticleGenerator* ptGen = new GeneradorGaussiano(Vector3(50), Vector3(35), 0.3, model,false);
+	//partGenerator.push_back(ptGen);
+	////Generador Uniforme
+	//model = new Particle(Vector3(0, -10, 0), Vector3(0), Vector3(0), Vector3(0), 0.99, 5, 10, 0, 1, Vector3(0, 125, 0));
+	//ptGen = new GeneradorNormal(Vector3(50), Vector3(35), 0.3, model, false);
+	//partGenerator.push_back(ptGen);
+	particles.push_back(new Firework(3, 10, Vector3(0,0,0), Vector3(0), Vector3(0), Vector3(0,10,0), 0.99, 5, 10, 3, 1, Vector3(0, 0, 125)));
 }
 
 ParticleSystem::~ParticleSystem() {
@@ -37,6 +39,12 @@ void ParticleSystem::update(double t) {
 	// Borras las particulas muertas
 	for (int i = 0; i < killList.size(); i++) {
 		Particle* p = *killList[i];
+		Firework* fire = dynamic_cast<Firework*>(*killList[i]);
+		std::cout << fire->getPosition().x << std::endl;
+		if (fire!=nullptr)
+		{
+			particles.splice(particles.end(), fire->explode());
+		}
 		particles.erase(killList[i]);
 		delete p;
 	}

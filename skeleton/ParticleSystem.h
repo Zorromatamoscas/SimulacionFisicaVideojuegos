@@ -1,6 +1,7 @@
 #pragma once
 #include "GeneradorGaussiano.h"
 #include "GeneradorNormal.h"
+#include "Firework.h"
 class ParticleSystem
 {
 private:

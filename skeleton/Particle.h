@@ -9,7 +9,7 @@
 using namespace physx;
 class Particle
 {
-private:
+protected:
 	//Parametros simulados
 	RenderItem* myShape;
 	PxTransform pose;
@@ -41,7 +41,7 @@ public:
 		myShape = new RenderItem(CreateShape(physx::PxSphereGeometry(1)), &pose, Vector4(color.x, color.y, color.z, 1));
 
 	}
-	~Particle()
+	virtual ~Particle()
 	{
 		if (myShape != nullptr)
 		{
