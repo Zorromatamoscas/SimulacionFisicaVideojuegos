@@ -11,7 +11,7 @@
 #include <iostream>
 #include "Particle.h"
 #include<vector>
-#include "ParticleGenerator.h"
+#include "ParticleSystem.h"
 
 std::string display_text = "This is a test";
 
@@ -34,7 +34,7 @@ PxScene*				gScene      = NULL;
 ContactReportCallback gContactReportCallback;
 
 std::vector<Particle*> myBullets;
-ParticleGenerator* myParticles;
+ParticleSystem* myParticles;
 
 
 // Initialize physics engine
@@ -62,7 +62,7 @@ void initPhysics(bool interactive)
 	sceneDesc.simulationEventCallback = &gContactReportCallback;
 	gScene = gPhysics->createScene(sceneDesc);
 
-	myParticles = new ParticleGenerator(Vector3(0, 0, 0), Vector3(5, 5, 5));
+	myParticles = new ParticleSystem();
 	}
 
 

@@ -13,9 +13,16 @@
     <ClCompile Include="Particle.cpp">
       <Filter>RenderItems</Filter>
     </ClCompile>
-    <ClCompile Include="ParticleGenerator.cpp" />
-    <ClCompile Include="GeneradorGaussiano.cpp" />
-    <ClCompile Include="GeneradorNormal.cpp" />
+    <ClCompile Include="GeneradorGaussiano.cpp">
+      <Filter>Generadores</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneradorNormal.cpp">
+      <Filter>Generadores</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleGenerator.cpp">
+      <Filter>Generadores</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -30,9 +37,16 @@
     <ClInclude Include="Particle.h">
       <Filter>RenderItems</Filter>
     </ClInclude>
-    <ClInclude Include="ParticleGenerator.h" />
-    <ClInclude Include="GeneradorGaussiano.h" />
-    <ClInclude Include="GeneradorNormal.h" />
+    <ClInclude Include="GeneradorGaussiano.h">
+      <Filter>Generadores</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneradorNormal.h">
+      <Filter>Generadores</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleGenerator.h">
+      <Filter>Generadores</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">
@@ -40,6 +54,9 @@
     </Filter>
     <Filter Include="RenderItems">
       <UniqueIdentifier>{5baacf5e-69a7-4b36-89ea-998575db9a3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generadores">
+      <UniqueIdentifier>{7531574f-aba1-4e3a-8716-99e9da9ca4f7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

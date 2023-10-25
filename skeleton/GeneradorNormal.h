@@ -18,5 +18,4 @@ public:
 	// Método abstracto
 	virtual std::list<Particle*> generateParticles();
 };
-};
 

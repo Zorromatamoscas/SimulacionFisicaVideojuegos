@@ -15,6 +15,7 @@ private:
 	PxTransform pose;
 	Vector3 vel;
 	Vector3 ace;
+	Vector3 myColor;
 	float damping;
 	float myMass;
 	Vector3 myGravity;
@@ -24,7 +25,7 @@ private:
 
 public:
 
-	Particle(Vector3 gravity, const PxVec3 pos, Vector3 acce, Vector3 velIni, float damp, float mass, float speed,float lifeT, float scalingValue)
+	Particle(Vector3 gravity, const PxVec3 pos, Vector3 acce, Vector3 velIni, float damp, float mass, float speed,float lifeT, float scalingValue, Vector3 color)
 	{
 		pose = PxTransform(pos);
 		scaleValue = scalingValue;
@@ -33,29 +34,28 @@ public:
 		ace = acce;
 		damping = damp;
 		mySpeed = speed*scalingValue;
+		myColor = color;
 		vel = mySpeed*velIni.getNormalized();
 		//masa simulada a una centesima de la velocidad
 		myMass = mass* pow(1/scalingValue,2);
-		myShape = new RenderItem(CreateShape(physx::PxSphereGeometry(1)), &pose, Vector4(125, 0, 0, 1));
+		myShape = new RenderItem(CreateShape(physx::PxSphereGeometry(1)), &pose, Vector4(color.x, color.y, color.z, 1));
 
 	}
 	~Particle()
 	{
 		if (myShape != nullptr)
 		{
-			DeregisterRenderItem(myShape);
 			myShape->release();
-			myShape = nullptr;
 
 		}
 	}
 	inline void setDuration(float dur) { lifeTime = dur; }
 
 	Particle* Particle::clone(Vector3 newPos,Vector3 newVel, Vector3 newAce, float newLifeTime) const {
-		return new Particle(myGravity, newPos, newAce, newVel, damping, myMass, mySpeed, newLifeTime, scaleValue);
+		return new Particle(myGravity, newPos, newAce, newVel, damping, myMass, mySpeed, newLifeTime, scaleValue, myColor  );
 	}
 	Particle* Particle::clone( Vector3 newVel, Vector3 newAce, float newLifeTime) const {
-		return new Particle(myGravity, pose.p, newAce, newVel, damping, myMass, mySpeed, newLifeTime, scaleValue);
+		return new Particle(myGravity, pose.p, newAce, newVel, damping, myMass, mySpeed, newLifeTime, scaleValue, myColor);
 	}
 
 	bool isAlive()
@@ -66,7 +66,7 @@ public:
 	{
 		return pose.p;
 	}
-	inline Vector3 setPosition(Vector3 newPos)
+	inline void setPosition(Vector3 newPos)
 	{
 		pose.p= newPos;
 	}
@@ -82,7 +82,6 @@ public:
 		vel.z *= powf(damping, t);
 		vel += myGravity * t;
 		pose.p += vel * t;
-		std::cout << vel.y << std::endl;
 	}
 
 };
