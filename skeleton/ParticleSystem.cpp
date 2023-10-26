@@ -39,10 +39,10 @@ void ParticleSystem::update(double t) {
 	// Borras las particulas muertas
 	for (int i = 0; i < killList.size(); i++) {
 		Particle* p = *killList[i];
-		Firework* fire = dynamic_cast<Firework*>(*killList[i]);
-		std::cout << fire->getPosition().x << std::endl;
-		if (fire!=nullptr)
+		
+		if (typeid(static_cast<Firework*>(*killList[i])) == typeid(Firework*))
 		{
+			Firework* fire = static_cast<Firework*>(*killList[i]);
 			particles.splice(particles.end(), fire->explode());
 		}
 		particles.erase(killList[i]);
