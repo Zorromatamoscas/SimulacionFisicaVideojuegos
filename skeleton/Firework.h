@@ -12,6 +12,8 @@ public:
 		Particle(gravity, pos, acce, velIni, damp, mass, speed, lifeT, scalingValue, color), nParticles(nParticles), generation(generations)
 	{
 		originalLifeTime = lifeTime;
+		 nParticles= nParticlesMin;
+		 generation= generations;
 
 	}
 	Firework* Firework::clone(int gener,Vector3 newPos, Vector3 newVel, Vector3 newAce, float newLifeTime, Vector3 newColor) const
