@@ -1,5 +1,4 @@
 #include "ParticleSystem.h"
-#include <iostream>
 ParticleSystem::ParticleSystem() {
 
 	//Generador Gaussiano
@@ -10,7 +9,8 @@ ParticleSystem::ParticleSystem() {
 	//model = new Particle(Vector3(0, -10, 0), Vector3(0), Vector3(0), Vector3(0), 0.99, 5, 10, 0, 1, Vector3(0, 125, 0));
 	//ptGen = new GeneradorNormal(Vector3(50), Vector3(35), 0.3, model, false);
 	//partGenerator.push_back(ptGen);
-	particles.push_back(new Firework(3, 10, Vector3(0,0,0), Vector3(0), Vector3(0), Vector3(0,10,0), 0.99, 5, 10, 3, 1, Vector3(0, 0, 125)));
+	//particles.push_back(new Firework(3, 10, Vector3(0,0,0), Vector3(0), Vector3(0), Vector3(0,10,0), 0.99, 5, 10, 3, 1, Vector3(0, 0, 125)));
+	particles.push_back(new Particle(Vector3(0, -10, 0), Vector3(0), Vector3(0), Vector3(0, 1, 0), 0.99, 5, 100, 10, 1, Vector3(0, 0, 0)));
 }
 
 ParticleSystem::~ParticleSystem() {
@@ -37,15 +37,16 @@ void ParticleSystem::update(double t) {
 	}
 
 	// Borras las particulas muertas
-	for (int i = 0; i < killList.size(); i++) {
-		Particle* p = *killList[i];
+	int initialSize = killList.size();
+	for (int i = 0; i <initialSize; i++) {
+		Particle* p = *killList.at(i);
 		
 		if (typeid(static_cast<Firework*>(*killList[i])) == typeid(Firework*))
 		{
 			Firework* fire = static_cast<Firework*>(*killList[i]);
-			particles.splice(particles.end(), fire->explode());
+			particles.splice(particles.end(),fire->explode(particles));
 		}
-		particles.erase(killList[i]);
+		particles.erase(killList.at(i));
 		delete p;
 	}
 	killList.clear();

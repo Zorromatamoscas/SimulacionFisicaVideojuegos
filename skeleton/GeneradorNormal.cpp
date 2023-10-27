@@ -46,3 +46,7 @@ std::list<Particle*> GeneradorNormal::generateParticles() {
 
 	return particulas;
 }
+Vector3 GeneradorNormal::getNewVel()
+{
+	return Vector3((*xVel)(gen), (*yVel)(gen), (*zVel)(gen));
+}

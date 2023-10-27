@@ -20,17 +20,27 @@ public:
 	{
 		return new Firework(gener,nParticles,myGravity, newPos, newAce, newVel, damping, myMass, mySpeed, newLifeTime, scaleValue, newColor);
 	}
-	std::list<Particle*> explode()
+	std::list<Particle*> explode(std::list<Particle*>& myList)
 	{
-		if (generation != 0) {
-			std::list<Particle*> confeti;
-			GeneradorNormal generator = GeneradorNormal(pose.p, Vector3(20), 1, this->clone(this->generation-1,this->pose.p,this->vel,this->ace,this->originalLifeTime,Vector3(rand() % 125, rand() % 125, rand() % 125)),true);
+		std::list<Particle*> confeti;
+		GeneradorNormal generator = GeneradorNormal(pose.p, Vector3(20), 1, this->clone(this->generation - 1, this->pose.p, this->vel, this->ace, this->originalLifeTime, Vector3(rand() % 125, rand() % 125, rand() % 125)), true);
+		if (generation > 1) {
+			
+			
+			for (int i = 0; i < nParticles; i++)
+			{
+				myList.push_back(this->clone(this->generation - 1, this->pose.p, generator.getNewVel(), this->ace, this->originalLifeTime, Vector3(120,80,100)));
+			}
+			
+		}
+		else if (generation == 1)
+		{
 			for (int i = 0; i < nParticles; i++)
 			{
 				confeti.splice(confeti.end(), generator.generateParticles());
 			}
-			return confeti;
 		}
+		return confeti;
 	}
 	inline int getGenerations()
 	{

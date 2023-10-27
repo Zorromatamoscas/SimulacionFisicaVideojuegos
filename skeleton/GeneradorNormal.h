@@ -17,5 +17,6 @@ public:
 
 	// Método abstracto
 	virtual std::list<Particle*> generateParticles();
+	Vector3 getNewVel();
 };
 

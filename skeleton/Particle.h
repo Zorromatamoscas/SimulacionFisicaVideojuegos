@@ -43,16 +43,13 @@ public:
 	}
 	virtual ~Particle()
 	{
-		if (myShape != nullptr)
-		{
 			myShape->release();
-
-		}
+			myShape = nullptr;
 	}
 	inline void setDuration(float dur) { lifeTime = dur; }
 
 	Particle* Particle::clone(Vector3 newPos,Vector3 newVel, Vector3 newAce, float newLifeTime) const {
-		return new Particle(myGravity, newPos, newAce, newVel, damping, myMass, mySpeed, newLifeTime, scaleValue, myColor  );
+		return new Particle(myGravity, newPos, newAce, newVel, damping, myMass, mySpeed, newLifeTime, scaleValue, myColor);
 	}
 	Particle* Particle::clone( Vector3 newVel, Vector3 newAce, float newLifeTime) const {
 		return new Particle(myGravity, pose.p, newAce, newVel, damping, myMass, mySpeed, newLifeTime, scaleValue, myColor);
