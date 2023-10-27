@@ -32,5 +32,9 @@ public:
 			return confeti;
 		}
 	}
+	inline int getGenerations()
+	{
+		return generation;
+	}
 };
 
