@@ -26,6 +26,8 @@
     <ClCompile Include="callbacks.cpp">
       <Filter>RenderItems</Filter>
     </ClCompile>
+    <ClCompile Include="ForceGenerator.cpp" />
+    <ClCompile Include="GravityGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -51,6 +53,9 @@
     </ClInclude>
     <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="Firework.h" />
+    <ClInclude Include="ForceGenerator.h" />
+    <ClInclude Include="GravityGenerator.h" />
+    <ClInclude Include="ParticleForceRegistry.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">

@@ -1,5 +1,10 @@
 #include "GravityGenerator.h"
-void GravityGenerator::updateForce(Particle* p, double t)
+GravityGenerator::GravityGenerator(Vector3 grav) : ForceGenerator()
+{
+	myGrav = grav;
+}
+void GravityGenerator::updateForce(Particle* p)
 {
 	if (fabs(p->getInvMass() < 1e-10)) return;
+	p->addForce(myGrav/p->getInvMass());
 }

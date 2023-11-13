@@ -14,7 +14,7 @@ public:
 	double _duration = -1e10;
 	inline bool updateTime(double t) {
 		_t += t;
-		return _t < _duration || _duration < 0.0; // Devuelve true si ya 
+		return _t < _duration || _duration < 0.0;
 	}
 	virtual ~ForceGenerator() {}
 };

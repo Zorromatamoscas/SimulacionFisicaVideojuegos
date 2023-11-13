@@ -6,7 +6,7 @@ protected:
 	Vector3 myGrav;
 public:
 	GravityGenerator(Vector3 grav);
-	virtual void updateForce(Particle* p, double t);
+	virtual void updateForce(Particle* p);
 	inline void setGravity(Vector3 grav) { myGrav = grav; }
 };
 

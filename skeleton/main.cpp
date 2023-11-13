@@ -63,6 +63,7 @@ void initPhysics(bool interactive)
 	gScene = gPhysics->createScene(sceneDesc);
 
 	myParticles = new ParticleSystem();
+
 	}
 
 

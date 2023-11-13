@@ -14,7 +14,6 @@ protected:
 	RenderItem* myShape;
 	PxTransform pose;
 	Vector3 vel;
-	Vector3 ace;
 	Vector3 myColor;
 	float damping;
 	float myMass;
@@ -23,16 +22,17 @@ protected:
 	float mySpeed;
 	float lifeTime;
 	float scaleValue;
+	Vector3 myForce;
 
 public:
 
-	Particle(Vector3 gravity, const PxVec3 pos, Vector3 acce, Vector3 velIni, float damp, float mass, float speed,float lifeT, float scalingValue, Vector3 color)
+	Particle(const PxVec3 pos, Vector3 velIni, float damp, float mass, float speed,float lifeT, float scalingValue, Vector3 color)
 	{
 		pose = PxTransform(pos);
+		myForce = Vector3(0);
 		scaleValue = scalingValue;
-		myGravity = gravity*(pow((scalingValue),2));
+		//myGravity = gravity*(pow((scalingValue),2));
 		lifeTime = lifeT;
-		ace = acce;
 		damping = damp;
 		mySpeed = speed*scalingValue;
 		myColor = color;
@@ -51,11 +51,11 @@ public:
 	inline double getInvMass() { return inv_myMass; }
 	inline void setDuration(float dur) { lifeTime = dur; }
 
-	Particle* Particle::clone(Vector3 newPos,Vector3 newVel, Vector3 newAce, float newLifeTime) const {
-		return new Particle(myGravity, newPos, newAce, newVel, damping, myMass, mySpeed, newLifeTime, scaleValue, myColor);
+	Particle* Particle::clone(Vector3 newPos,Vector3 newVel, float newLifeTime) const {
+		return new Particle(newPos, newVel, damping, myMass, mySpeed, newLifeTime, scaleValue, myColor);
 	}
-	Particle* Particle::clone( Vector3 newVel, Vector3 newAce, float newLifeTime) const {
-		return new Particle(myGravity, pose.p, newAce, newVel, damping, myMass, mySpeed, newLifeTime, scaleValue, myColor);
+	Particle* Particle::clone( Vector3 newVel,  float newLifeTime) const {
+		return new Particle(pose.p, newVel, damping, myMass, mySpeed, newLifeTime, scaleValue, myColor);
 	}
 
 	bool isAlive()
@@ -76,12 +76,21 @@ public:
 	}
 	void integrate(double t)
 	{
-		lifeTime -= t;
-		vel += ace * t;
-		vel.x *= powf(damping, t);
-		vel.z *= powf(damping, t);
-		vel += myGravity * t;
+		Vector3 resulting_accel = myForce * inv_myMass;
+		vel += resulting_accel * t;
+		vel *= damping;
 		pose.p += vel * t;
+		lifeTime -= t;
+		// Clear accum
+		clearForce();
+	}
+	void addForce(const Vector3& force)
+	{
+		myForce += force;
+	}
+	void clearForce()
+	{
+		myForce *= 0;
 	}
 
 };
