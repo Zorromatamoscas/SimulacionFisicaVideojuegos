@@ -18,6 +18,7 @@ protected:
 	Vector3 myColor;
 	float damping;
 	float myMass;
+	float inv_myMass;
 	Vector3 myGravity;
 	float mySpeed;
 	float lifeTime;
@@ -38,6 +39,7 @@ public:
 		vel = mySpeed*velIni.getNormalized();
 		//masa simulada a una centesima de la velocidad
 		myMass = mass* pow(1/scalingValue,2);
+		inv_myMass = 1 / myMass;
 		myShape = new RenderItem(CreateShape(physx::PxSphereGeometry(1)), &pose, Vector4(color.x, color.y, color.z, 1));
 
 	}
@@ -46,6 +48,7 @@ public:
 			myShape->release();
 			myShape = nullptr;
 	}
+	inline double getInvMass() { return inv_myMass; }
 	inline void setDuration(float dur) { lifeTime = dur; }
 
 	Particle* Particle::clone(Vector3 newPos,Vector3 newVel, Vector3 newAce, float newLifeTime) const {
