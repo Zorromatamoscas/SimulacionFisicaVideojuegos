@@ -9,5 +9,6 @@ private:
 	bool isInBounds(Particle* p);
 public:
 	WindGenerator(Vector3 wndVel, Vector3 positon, double vol);
+	virtual void updateForce(Particle* p);
 };
 
