@@ -15,7 +15,7 @@ bool WindGenerator::isInBounds(Particle* p)
 		(Pos.y > (pos.y - volume) && Pos.y < (pos.y + volume)) &&
 		(Pos.z > (pos.z - volume) && Pos.z < (pos.z + volume));
 }
-void WindGenerator::updateForce(Particle* p)
+void WindGenerator::updateForce(Particle* p, double t)
 {
 	if (fabs(p->getInvMass() < 1e-10)) return;
 	if (isInBounds(p)) {

@@ -7,11 +7,11 @@ typedef std::pair<ForceGenerator*, Particle*> FRPair;
 class ParticleForceRegistry: public std::multimap<ForceGenerator*, Particle*>
 {
 public:
-	void updateForces()
+	void updateForces(double t)
 	{
 		for (auto it = begin(); it != end(); it++)
 		{
-			it->first->updateForce(it->second);
+			it->first->updateForce(it->second,t);
 		}
 	}
 	void addRegistry(ForceGenerator* fg, Particle* p)

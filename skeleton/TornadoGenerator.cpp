@@ -3,7 +3,7 @@ TornadoGenerator::TornadoGenerator(Vector3 wndVel, Vector3 positon, double vol, 
 	: WindGenerator(wndVel, positon, vol, konstant1, konstant2), k(tornStrength) {}
 
 
-void TornadoGenerator::updateForce(Particle* p)
+void TornadoGenerator::updateForce(Particle* p, double t)
 {
 	if (fabs(p->getInvMass() < 1e-10)) return;
 	if (isInBounds(p)) {
@@ -14,6 +14,6 @@ void TornadoGenerator::updateForce(Particle* p)
 
 		windVel = k * Vector3(-(p_pos.z - pos.z), 50 - (p_pos.y - pos.y), p_pos.x - pos.x);
 
-		WindGenerator::updateForce(p);
+		WindGenerator::updateForce(p,t);
 	}
 }

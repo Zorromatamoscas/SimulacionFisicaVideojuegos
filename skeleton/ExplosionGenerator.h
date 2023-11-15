@@ -11,5 +11,10 @@ private:
 
 public:
 	ExplosionGenerator(Vector3 ExpPos, double radio, float ExpStrength, float timeConstant, bool activ = false);
+	virtual void updateForce(Particle* p, double t);
+	inline void setActive(bool act) { 
+		activated = act;
+		resetTime();
+	}
 };
 

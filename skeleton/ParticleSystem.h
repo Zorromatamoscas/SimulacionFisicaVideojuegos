@@ -6,6 +6,7 @@
 #include "GravityGenerator.h"
 #include "WindGenerator.h"
 #include "TornadoGenerator.h"
+#include "ExplosionGenerator.h"
 class ParticleSystem
 {
 private:
@@ -13,14 +14,16 @@ private:
 	std::list<ParticleGenerator*> partGenerator;
 	std::vector<std::list<Particle*>::iterator> killList;
 	ParticleForceRegistry* myForceRegistry;
-	GravityGenerator* gravGen;
-	WindGenerator* windGen;
+	GravityGenerator* gravGen = nullptr;
+	WindGenerator* windGen = nullptr;
+	ExplosionGenerator* explGen = nullptr;
 
 public:
 	ParticleSystem();
 	~ParticleSystem();
 	void update(double t);
 	ParticleGenerator* getParticleGenerator(std::string name);
+	void explosion();
 	void generateFireworkSystem();
 };
 

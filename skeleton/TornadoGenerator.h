@@ -6,6 +6,6 @@ private:
 	double k;
 public:
 	TornadoGenerator(Vector3 wndVel, Vector3 positon, double vol, double konstant1, double konstant2, double tornStrength);
-	virtual void updateForce(Particle* p);
+	virtual void updateForce(Particle* p, double t);
 };
 

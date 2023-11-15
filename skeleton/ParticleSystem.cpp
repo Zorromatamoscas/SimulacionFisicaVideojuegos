@@ -15,7 +15,8 @@ ParticleSystem::ParticleSystem() {
 	myForceRegistry = new ParticleForceRegistry();
 	gravGen = new GravityGenerator(Vector3(0, -10, 0));
 	//windGen = new WindGenerator(Vector3(100, 0, 0), Vector3(0, 0, 0), 100, 1, 0);
-	windGen = new TornadoGenerator(Vector3(0, 0, 0), Vector3(0, 0, 0), 100, 1, 0, 5);
+	//windGen = new TornadoGenerator(Vector3(0, 0, 0), Vector3(0, 0, 0), 100, 1, 0, 5);
+	explGen = new ExplosionGenerator(Vector3(0), 100, 5000, 3);
 	/*myForceRegistry->addRegistry(gravGen, *particles.begin());
 	myForceRegistry->addRegistry(windGen, *particles.begin());*/
 }
@@ -29,6 +30,10 @@ ParticleSystem::~ParticleSystem() {
 	for (Particle* p : particles) delete p;
 	particles.clear();
 }
+void ParticleSystem::explosion()
+{
+	if (explGen != nullptr) explGen->setActive(true);
+}
 
 void ParticleSystem::update(double t) {
 	// Generas nuevas particulas si es necesario
@@ -37,12 +42,13 @@ void ParticleSystem::update(double t) {
 		
 		if (!prtcls.empty()) {
 			myForceRegistry->addRegistry(gravGen, *prtcls.begin());
-			myForceRegistry->addRegistry(windGen, *prtcls.begin());
+			myForceRegistry->addRegistry(explGen, *prtcls.begin());
+			//myForceRegistry->addRegistry(windGen, *prtcls.begin());
 			particles.splice(particles.end(), prtcls);
 		}
 	}
 
-	myForceRegistry->updateForces();
+	myForceRegistry->updateForces(t);
 
 	for (auto it = particles.begin(); it != particles.end(); it++) {
 		(*it)->integrate(t);

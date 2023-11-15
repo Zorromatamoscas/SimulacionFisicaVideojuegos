@@ -10,6 +10,6 @@ protected:
 	double k1, k2;
 public:
 	WindGenerator(Vector3 wndVel, Vector3 positon, double vol, double konstant1, double konstant2);
-	virtual void updateForce(Particle* p);
+	virtual void updateForce(Particle* p, double t);
 };
 
