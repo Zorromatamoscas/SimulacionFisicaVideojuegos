@@ -2,10 +2,10 @@
 ParticleSystem::ParticleSystem() {
 
 	//Generador Gaussiano
-	particles.push_back(new Particle(Vector3(0), Vector3(0), 0.99, 500, 1, 100, 1, Vector3(0, 0, 125)));
-	//new Particle * model = new Particle(Vector3(0), Vector3(0), 0.99, 500, 100, 0, 1, Vector3(0, 0, 125))
-	/*ParticleGenerator* ptGen = new GeneradorGaussiano(Vector3(50), Vector3(35), 0.3, model,false);
-	partGenerator.push_back(ptGen);*/
+	//particles.push_back(new Particle(Vector3(0), Vector3(0), 0.9999, 5, 1, 100, 1, Vector3(0, 0, 125)));
+	Particle* model = new Particle(Vector3(0), Vector3(0), 0.99, 5, 100, 0, 1, Vector3(0, 0, 125));
+	ParticleGenerator* ptGen = new GeneradorGaussiano(Vector3(50), Vector3(35), 0.3, model,true);
+	partGenerator.push_back(ptGen);
 	////Generador Uniforme
 	//model = new Particle(Vector3(0, -10, 0), Vector3(0), Vector3(0), Vector3(0), 0.99, 5, 10, 0, 1, Vector3(0, 125, 0));
 	//ptGen = new GeneradorNormal(Vector3(50), Vector3(35), 0.3, model, false);
@@ -13,7 +13,11 @@ ParticleSystem::ParticleSystem() {
 	//particles.push_back(new Firework(3, 10, Vector3(0,0,0), Vector3(0), Vector3(0), Vector3(0,10,0), 0.99, 5, 10, 3, 1, Vector3(0, 0, 125)));
 	//particles.push_back(new Particle(Vector3(0, -10, 0), Vector3(0),  Vector3(0, 1, 0), 0.99, 5, 100, 10, 1, Vector3(0, 0, 0)));
 	myForceRegistry = new ParticleForceRegistry();
-	myForceRegistry->addRegistry(new GravityGenerator(Vector3(0, -10, 0)), *particles.begin());
+	gravGen = new GravityGenerator(Vector3(0, -10, 0));
+	//windGen = new WindGenerator(Vector3(100, 0, 0), Vector3(0, 0, 0), 100, 1, 0);
+	windGen = new TornadoGenerator(Vector3(0, 0, 0), Vector3(0, 0, 0), 100, 1, 0, 5);
+	/*myForceRegistry->addRegistry(gravGen, *particles.begin());
+	myForceRegistry->addRegistry(windGen, *particles.begin());*/
 }
 
 ParticleSystem::~ParticleSystem() {
@@ -32,8 +36,8 @@ void ParticleSystem::update(double t) {
 		std::list<Particle*> prtcls = p->generateParticles();
 		
 		if (!prtcls.empty()) {
-			if (rand() % 2 == 0) myForceRegistry->addRegistry(new GravityGenerator(Vector3(0, -10, 0)), *prtcls.begin());
-			else myForceRegistry->addRegistry(new GravityGenerator(Vector3(0, 10, 0)), *prtcls.begin());
+			myForceRegistry->addRegistry(gravGen, *prtcls.begin());
+			myForceRegistry->addRegistry(windGen, *prtcls.begin());
 			particles.splice(particles.end(), prtcls);
 		}
 	}

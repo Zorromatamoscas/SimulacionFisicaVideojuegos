@@ -4,6 +4,8 @@
 #include "Firework.h"
 #include "ParticleForceRegistry.h"
 #include "GravityGenerator.h"
+#include "WindGenerator.h"
+#include "TornadoGenerator.h"
 class ParticleSystem
 {
 private:
@@ -11,6 +13,8 @@ private:
 	std::list<ParticleGenerator*> partGenerator;
 	std::vector<std::list<Particle*>::iterator> killList;
 	ParticleForceRegistry* myForceRegistry;
+	GravityGenerator* gravGen;
+	WindGenerator* windGen;
 
 public:
 	ParticleSystem();
