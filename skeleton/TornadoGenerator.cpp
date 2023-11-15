@@ -8,11 +8,12 @@ void TornadoGenerator::updateForce(Particle* p)
 	if (fabs(p->getInvMass() < 1e-10)) return;
 	if (isInBounds(p)) {
 
-		double zTorn = -(p->getPosition().z - pos.z);
-		double yTorn = 50 - (p->getPosition().y - pos.y);
-		double xTorn = p->getPosition().x - pos.x;
-		Vector3 velTor = k * Vector3(xTorn, yTorn, zTorn);
-		Vector3 force = k1 * velTor + k2 * velTor.magnitude() * velTor;
-		p->addForce(force);
+		if (fabs(p->getInvMass()) < 1e-10) return;
+
+		Vector3 p_pos = p->getPosition();
+
+		windVel = k * Vector3(-(p_pos.z - pos.z), 50 - (p_pos.y - pos.y), p_pos.x - pos.x);
+
+		WindGenerator::updateForce(p);
 	}
 }
