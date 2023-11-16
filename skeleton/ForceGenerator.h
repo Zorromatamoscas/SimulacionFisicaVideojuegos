@@ -18,7 +18,7 @@ public:
 	}
 	inline bool updateTime(double t) {
 		_t += t;
-		return _t < _duration || _duration < 0.0;
+		return _t > _duration || _duration < 0.0;
 	}
 	inline void resetTime() { _t = 0; }
 	virtual ~ForceGenerator() {}

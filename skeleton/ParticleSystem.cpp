@@ -16,7 +16,8 @@ ParticleSystem::ParticleSystem() {
 	gravGen = new GravityGenerator(Vector3(0, -10, 0));
 	//windGen = new WindGenerator(Vector3(100, 0, 0), Vector3(0, 0, 0), 100, 1, 0);
 	//windGen = new TornadoGenerator(Vector3(0, 0, 0), Vector3(0, 0, 0), 100, 1, 0, 5);
-	explGen = new ExplosionGenerator(Vector3(0), 100, 5000, 3);
+	explGen = new ExplosionGenerator(Vector3(0), 1000, 500000, 5);
+	explGen->setDuration(50);
 	/*myForceRegistry->addRegistry(gravGen, *particles.begin());
 	myForceRegistry->addRegistry(windGen, *particles.begin());*/
 }

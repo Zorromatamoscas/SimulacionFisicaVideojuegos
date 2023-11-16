@@ -10,13 +10,12 @@ void ExplosionGenerator::updateForce(Particle* p, double t)
 	double r = diff.magnitude(); // distacia a la explosión
 
 	if (r < radius && activated ) {
-		f = (strength / pow(r, 2)) * diff * exp(-_t / timeConstant);
+		f = (strength / pow(r, 2)) * diff * exp(- t / timeConstant);
 		p->addForce(f);
 	}
-	if (updateTime(t)) {
+	if (activated && updateTime(t)) {
 		activated = false;
 		resetTime();
 	}
-
 }
 
