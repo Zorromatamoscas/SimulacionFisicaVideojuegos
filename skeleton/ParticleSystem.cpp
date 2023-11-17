@@ -3,7 +3,7 @@ ParticleSystem::ParticleSystem() {
 
 	//Generador Gaussiano
 	//particles.push_back(new Particle(Vector3(0), Vector3(0), 0.9999, 5, 1, 100, 1, Vector3(0, 0, 125)));
-	Particle* model = new Particle(Vector3(0), Vector3(0), 0.99, 5, 100, 0, 1, Vector3(0, 0, 125));
+	Particle* model = new Particle(Vector3(0), Vector3(0), 0.99, 5, 100, 5, 1, Vector3(0, 0, 125));
 	ParticleGenerator* ptGen = new GeneradorGaussiano(Vector3(50), Vector3(35), 0.3, model,true);
 	partGenerator.push_back(ptGen);
 	////Generador Uniforme
@@ -14,7 +14,7 @@ ParticleSystem::ParticleSystem() {
 	//particles.push_back(new Particle(Vector3(0, -10, 0), Vector3(0),  Vector3(0, 1, 0), 0.99, 5, 100, 10, 1, Vector3(0, 0, 0)));
 	myForceRegistry = new ParticleForceRegistry();
 	gravGen = new GravityGenerator(Vector3(0, -10, 0));
-	//windGen = new WindGenerator(Vector3(100, 0, 0), Vector3(0, 0, 0), 100, 1, 0);
+	windGen = new WindGenerator(Vector3(100, 0, 0), Vector3(0, 0, 0), 100, 1, 0);
 	//windGen = new TornadoGenerator(Vector3(0, 0, 0), Vector3(0, 0, 0), 100, 1, 0, 5);
 	explGen = new ExplosionGenerator(Vector3(0), 1000, 500000, 5);
 	explGen->setDuration(50);
@@ -44,7 +44,7 @@ void ParticleSystem::update(double t) {
 		if (!prtcls.empty()) {
 			myForceRegistry->addRegistry(gravGen, *prtcls.begin());
 			myForceRegistry->addRegistry(explGen, *prtcls.begin());
-			//myForceRegistry->addRegistry(windGen, *prtcls.begin());
+			myForceRegistry->addRegistry(windGen, *prtcls.begin());
 			particles.splice(particles.end(), prtcls);
 		}
 	}
@@ -66,6 +66,7 @@ void ParticleSystem::update(double t) {
 			Firework* fire = static_cast<Firework*>(*killList[i]);
 			particles.splice(particles.end(),fire->explode(particles));
 		}
+		myForceRegistry->deletePartReg(p);
 		particles.erase(killList.at(i));
 		delete p;
 	}
