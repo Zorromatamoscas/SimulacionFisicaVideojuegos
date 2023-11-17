@@ -39,9 +39,9 @@ std::list<Particle*> GeneradorNormal::generateParticles() {
 		// Crear partícula
 		if (!anclado) {
 			Vector3 pos = Vector3((*xPos)(gen), (*yPos)(gen), (*zPos)(gen));
-			particulas.push_back(model->clone(pos, vel, lifeTime));
+			particulas.push_back(model->clone(pos, vel, lifeTime, rand() % 100));
 		}
-		else particulas.push_back(model->clone(vel, accl, lifeTime));
+		else particulas.push_back(model->clone(vel, accl, lifeTime, rand() % 100));
 	}
 
 	return particulas;
