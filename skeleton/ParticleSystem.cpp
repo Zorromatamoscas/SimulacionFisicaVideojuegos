@@ -3,10 +3,11 @@ ParticleSystem::ParticleSystem() {
 
 	//Generador Gaussiano
 	//particles.push_back(new Particle(Vector3(0), Vector3(0), 0.9999, 5, 1, 100, 1, Vector3(0, 0, 125)));
-	anchor = new Particle(Vector3(0,50,0), CreateShape(physx::PxBoxGeometry(Vector3(5))), Vector3(1, 0, 0));
-	Particle* model = new Particle(Vector3(0), Vector3(0), 0.99, 5, 100, 5, 1, Vector3(0, 0, 125));
-	ParticleGenerator* ptGen = new GeneradorGaussiano(Vector3(50), Vector3(35), 0.3, model,true);
-	partGenerator.push_back(ptGen);
+	//anchor = new Particle(Vector3(0,50,0), CreateShape(physx::PxBoxGeometry(Vector3(5))), Vector3(1, 0, 0));
+	Particle* dummyParticle = new Particle(Vector3(0, 100, 0), Vector3(0), 0.99, 50, 100, 500, 1, Vector3(0, 0, 125));
+	particles.push_back(new Particle(Vector3(0,-100,0), Vector3(0), 0.99, 5, 100, 500, 1, Vector3(0, 0, 125)));
+	//ParticleGenerator* ptGen = new GeneradorGaussiano(Vector3(50), Vector3(35), 0.3, model,true);
+	//partGenerator.push_back(ptGen);
 	////Generador Uniforme
 	//model = new Particle(Vector3(0, -10, 0), Vector3(0), Vector3(0), Vector3(0), 0.99, 5, 10, 0, 1, Vector3(0, 125, 0));
 	//ptGen = new GeneradorNormal(Vector3(50), Vector3(35), 0.3, model, false);
@@ -15,12 +16,18 @@ ParticleSystem::ParticleSystem() {
 	//particles.push_back(new Particle(Vector3(0, -10, 0), Vector3(0),  Vector3(0, 1, 0), 0.99, 5, 100, 10, 1, Vector3(0, 0, 0)));
 	myForceRegistry = new ParticleForceRegistry();
 	gravGen = new GravityGenerator(Vector3(0, -10, 0));
-	windGen = new WindGenerator(Vector3(100, 0, 0), Vector3(0, 0, 0), 100, 1, 0);
+	//windGen = new WindGenerator(Vector3(100, 0, 0), Vector3(0, 0, 0), 100, 1, 0);
 	//windGen = new TornadoGenerator(Vector3(0, 0, 0), Vector3(0, 0, 0), 100, 1, 0, 5);
-	explGen = new ExplosionGenerator(Vector3(0), 1000, 500000, 5);
-	explGen->setDuration(50);
-	/*myForceRegistry->addRegistry(gravGen, *particles.begin());
-	myForceRegistry->addRegistry(windGen, *particles.begin());*/
+	//explGen = new ExplosionGenerator(Vector3(0), 1000, 500000, 5);
+	//explGen->setDuration(50);
+	sprgGen = new springLockGenerator(5, 50, dummyParticle);
+	sprgGen1 = new springLockGenerator(5, 50, particles.back());
+	myForceRegistry->addRegistry(sprgGen, particles.back());
+	myForceRegistry->addRegistry(sprgGen1, dummyParticle);
+	particles.push_back(dummyParticle);
+	myForceRegistry->addRegistry(gravGen, *particles.begin());
+	myForceRegistry->addRegistry(gravGen, particles.back());
+	/*myForceRegistry->addRegistry(windGen, *particles.begin());*/
 }
 
 ParticleSystem::~ParticleSystem() {

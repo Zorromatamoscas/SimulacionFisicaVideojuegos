@@ -60,6 +60,24 @@ public:
 		myShape = new RenderItem(form, &pose, Vector4(color.x, color.y, color.z, 1));
 	};
 
+	Particle(const PxVec3 pos, Vector3 velIni, float damp, float mass, float speed, float lifeT, float scalingValue, Vector3 color, PxShape* form)
+	{
+		pose = PxTransform(pos);
+		myForce = Vector3(0);
+		scaleValue = scalingValue;
+		//myGravity = gravity*(pow((scalingValue),2));
+		lifeTime = lifeT;
+		damping = damp;
+		mySpeed = speed * scalingValue;
+		myColor = color;
+		vel = mySpeed * velIni.getNormalized();
+		//masa simulada a una centesima de la velocidad
+		myMass = mass * pow(1 / scalingValue, 2);
+		inv_myMass = 1 / myMass;
+		myShape = new RenderItem(form, &pose, Vector4(color.x, color.y, color.z, 1));
+
+	}
+
 	virtual ~Particle()
 	{
 			myShape->release();

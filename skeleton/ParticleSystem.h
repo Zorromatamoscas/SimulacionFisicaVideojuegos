@@ -7,6 +7,7 @@
 #include "WindGenerator.h"
 #include "TornadoGenerator.h"
 #include "ExplosionGenerator.h"
+#include "springLockGenerator.h"
 class ParticleSystem
 {
 private:
@@ -17,6 +18,8 @@ private:
 	GravityGenerator* gravGen = nullptr;
 	WindGenerator* windGen = nullptr;
 	ExplosionGenerator* explGen = nullptr;
+	springLockGenerator* sprgGen = nullptr;
+	springLockGenerator* sprgGen1 = nullptr;
 	Particle* anchor;
 
 public:

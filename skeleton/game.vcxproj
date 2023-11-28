@@ -256,6 +256,7 @@
     <ClCompile Include="callbacks.cpp" />
     <ClCompile Include="ExplosionGenerator.cpp" />
     <ClCompile Include="Firework.cpp" />
+    <ClCompile Include="FloatingGenerator.cpp" />
     <ClCompile Include="ForceGenerator.cpp" />
     <ClCompile Include="GeneradorGaussiano.cpp" />
     <ClCompile Include="GeneradorNormal.cpp" />
@@ -276,6 +277,7 @@
     <ClInclude Include="core.hpp" />
     <ClInclude Include="ExplosionGenerator.h" />
     <ClInclude Include="Firework.h" />
+    <ClInclude Include="FloatingGenerator.h" />
     <ClInclude Include="ForceGenerator.h" />
     <ClInclude Include="GeneradorGaussiano.h" />
     <ClInclude Include="GeneradorNormal.h" />
