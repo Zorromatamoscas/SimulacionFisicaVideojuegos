@@ -3,6 +3,7 @@ ParticleSystem::ParticleSystem() {
 
 	//Generador Gaussiano
 	//particles.push_back(new Particle(Vector3(0), Vector3(0), 0.9999, 5, 1, 100, 1, Vector3(0, 0, 125)));
+	anchor = new Particle(Vector3(0,50,0), CreateShape(physx::PxBoxGeometry(Vector3(5))), Vector3(1, 0, 0));
 	Particle* model = new Particle(Vector3(0), Vector3(0), 0.99, 5, 100, 5, 1, Vector3(0, 0, 125));
 	ParticleGenerator* ptGen = new GeneradorGaussiano(Vector3(50), Vector3(35), 0.3, model,true);
 	partGenerator.push_back(ptGen);

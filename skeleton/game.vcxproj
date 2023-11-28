@@ -267,6 +267,7 @@
     <ClCompile Include="RenderUtils.cpp" />
     <ClCompile Include="Render\Camera.cpp" />
     <ClCompile Include="Render\Render.cpp" />
+    <ClCompile Include="springLockGenerator.cpp" />
     <ClCompile Include="TornadoGenerator.cpp" />
     <ClCompile Include="WindGenerator.cpp" />
   </ItemGroup>
@@ -286,6 +287,7 @@
     <ClInclude Include="RenderUtils.hpp" />
     <ClInclude Include="Render\Camera.h" />
     <ClInclude Include="Render\Render.h" />
+    <ClInclude Include="springLockGenerator.h" />
     <ClInclude Include="TornadoGenerator.h" />
     <ClInclude Include="WindGenerator.h" />
   </ItemGroup>

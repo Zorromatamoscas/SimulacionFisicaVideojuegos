@@ -43,6 +43,23 @@ public:
 		myShape = new RenderItem(CreateShape(physx::PxSphereGeometry(1)), &pose, Vector4(color.x, color.y, color.z, 1));
 
 	}
+	Particle(const PxVec3 pos, PxShape* form, Vector3 color)
+	{
+		pose = PxTransform(pos);
+		myForce = Vector3(0);
+		scaleValue = 0;
+		//myGravity = gravity*(pow((scalingValue),2));
+		lifeTime = 1000000;
+		damping = 0;
+		mySpeed = 0;
+		myColor = color;
+		vel = Vector3(0);
+		//masa simulada a una centesima de la velocidad
+		myMass = 0;
+		inv_myMass = 1 / myMass;
+		myShape = new RenderItem(form, &pose, Vector4(color.x, color.y, color.z, 1));
+	};
+
 	virtual ~Particle()
 	{
 			myShape->release();

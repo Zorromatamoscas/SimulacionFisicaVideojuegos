@@ -17,6 +17,7 @@ private:
 	GravityGenerator* gravGen = nullptr;
 	WindGenerator* windGen = nullptr;
 	ExplosionGenerator* explGen = nullptr;
+	Particle* anchor;
 
 public:
 	ParticleSystem();
