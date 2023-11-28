@@ -1,6 +1,6 @@
 #include "FloatingGenerator.h"
 FloatingGenerator::FloatingGenerator(float partHeight, float V, float d, Particle* liquid_surface) : ForceGenerator(),
-volume(V), density(d), surface(liquid_surface), particleHeigth(partHeight);
+volume(V), density(d), surface(liquid_surface), particleHeigth(partHeight)
 {
 }
 
