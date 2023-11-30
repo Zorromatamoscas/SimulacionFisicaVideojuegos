@@ -1,11 +1,18 @@
 #include "ParticleSystem.h"
 ParticleSystem::ParticleSystem() {
 
-	//Generador Gaussiano
+	
 	//particles.push_back(new Particle(Vector3(0), Vector3(0), 0.9999, 5, 1, 100, 1, Vector3(0, 0, 125)));
 	//anchor = new Particle(Vector3(0,50,0), CreateShape(physx::PxBoxGeometry(Vector3(5))), Vector3(1, 0, 0));
-	Particle* dummyParticle = new Particle(Vector3(0, 100, 0), Vector3(0), 0.99, 50, 100, 500, 1, Vector3(0, 0, 125));
-	particles.push_back(new Particle(Vector3(0,-100,0), Vector3(0), 0.99, 5, 100, 500, 1, Vector3(0, 0, 125)));
+	//Particle* dummyParticle = new Particle(Vector3(0, 100, 0), Vector3(0), 0.99, 50, 100, 500, 1, Vector3(0, 0, 125));
+
+	Particle* dummyParticle= new Particle(Vector3(0), Vector3(0), 0.99, 50, 1, 100, 1, Vector3(1, 0, 0), CreateShape(physx::PxBoxGeometry(Vector3(5))));
+
+	Particle* aquaSuperficie= new Particle(Vector3(0, -10, 0), CreateShape(physx::PxBoxGeometry(Vector3(20,2,20))), Vector3(0, 0, 1));
+
+	//particles.push_back(new Particle(Vector3(0,-100,0), Vector3(0), 0.99, 5, 100, 500, 1, Vector3(0, 0, 125)));
+
+	//Generador Gaussiano
 	//ParticleGenerator* ptGen = new GeneradorGaussiano(Vector3(50), Vector3(35), 0.3, model,true);
 	//partGenerator.push_back(ptGen);
 	////Generador Uniforme
@@ -20,13 +27,19 @@ ParticleSystem::ParticleSystem() {
 	//windGen = new TornadoGenerator(Vector3(0, 0, 0), Vector3(0, 0, 0), 100, 1, 0, 5);
 	//explGen = new ExplosionGenerator(Vector3(0), 1000, 500000, 5);
 	//explGen->setDuration(50);
-	sprgGen = new springLockGenerator(5, 50, dummyParticle);
-	sprgGen1 = new springLockGenerator(5, 50, particles.back());
-	myForceRegistry->addRegistry(sprgGen, particles.back());
-	myForceRegistry->addRegistry(sprgGen1, dummyParticle);
+
+	/*sprgGen = new springLockGenerator(5, 50, dummyParticle);
+	sprgGen1 = new springLockGenerator(5, 50, particles.back());*/
+
+	fltGen = new FloatingGenerator(5, 100, 1, aquaSuperficie);
+
+	/*myForceRegistry->addRegistry(sprgGen, particles.back());
+	myForceRegistry->addRegistry(sprgGen1, dummyParticle);*/
 	particles.push_back(dummyParticle);
+
 	myForceRegistry->addRegistry(gravGen, *particles.begin());
-	myForceRegistry->addRegistry(gravGen, particles.back());
+	myForceRegistry->addRegistry(fltGen, *particles.begin());
+	//myForceRegistry->addRegistry(gravGen, particles.back());*/
 	/*myForceRegistry->addRegistry(windGen, *particles.begin());*/
 }
 
