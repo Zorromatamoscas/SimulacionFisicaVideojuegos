@@ -1,9 +1,9 @@
 #include "springLockGenerator.h"
-springLockGenerator::springLockGenerator(double k, double lenght, Vector3 anchorP): ForceGenerator(), kConstant(k), springLength(lenght), anchorPoint(anchorP)
+springLockGenerator::springLockGenerator(double k, double lenght, Vector3 anchorP, bool goma ): ForceGenerator(), kConstant(k), springLength(lenght), anchorPoint(anchorP), myGoma(goma)
 {
 
 }
-springLockGenerator::springLockGenerator(double k, double lenght, Particle* othe) : ForceGenerator(), kConstant(k), springLength(lenght), anchorPoint(0), other(othe)
+springLockGenerator::springLockGenerator(double k, double lenght, Particle* othe, bool goma) : ForceGenerator(), kConstant(k), springLength(lenght), anchorPoint(0), other(othe), myGoma(goma)
 {
 
 }
