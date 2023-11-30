@@ -15,9 +15,15 @@ void springLockGenerator::updateForce(Particle* p, double t)
 	double totalLenght;
 	Vector3 springDirection;
 	if (fabs(p->getInvMass() < 1e-10)) return;
-	springVector = p->getPosition() - (other==nullptr?anchorPoint: other->getPosition());
-	totalLenght = springVector.magnitude();
-	springDirection = springVector.getNormalized();
-	force = -kConstant * (totalLenght - springLength) * springDirection;
-	p->addForce(force);
+	springVector = p->getPosition() - (other == nullptr ? anchorPoint : other->getPosition());
+	if (myGoma && (springVector.magnitude() <= springLength)) {
+		std::cout << "hola" << std::endl;
+		return;
+	}
+	else {
+		totalLenght = springVector.magnitude();
+		springDirection = springVector.getNormalized();
+		force = -kConstant * (totalLenght - springLength) * springDirection;
+		p->addForce(force);
+	}
 }

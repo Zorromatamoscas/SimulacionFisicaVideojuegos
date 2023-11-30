@@ -123,7 +123,19 @@ void keyPress(unsigned char key, const PxTransform& camera)
 		myParticles->explosion();
 		break;
 	}
+	case 'Z':
+	{
+		myParticles->Engorda();
+		break;
+	}
+	case 'X':
+	{
+		myParticles->Adelgaza();
+		break;
+	}
+
 	default:
+		myParticles->Adelgaza();
 		break;
 	}
 }

@@ -127,6 +127,16 @@ public:
 	{
 		myForce *= 0;
 	}
+	inline void Engorda()
+	{
+		myMass += 5;
+		inv_myMass = 1 / myMass;
+	}
+	inline void Adelgaza()
+	{
+		myMass -= 5;
+		inv_myMass = 1 / myMass;
+	}
 
 };
 

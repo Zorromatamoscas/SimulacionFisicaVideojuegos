@@ -1,16 +1,60 @@
 #include "ParticleSystem.h"
 ParticleSystem::ParticleSystem() {
 
+	myForceRegistry = new ParticleForceRegistry();
+	gravGen = new GravityGenerator(Vector3(0, -10, 0));
+
+	//Muelle con ancla
+	/*anchor = new Particle(Vector3(0,50,0), CreateShape(physx::PxBoxGeometry(Vector3(5))), Vector3(1, 0, 0));
+	dummyParticle = new Particle(Vector3(0, 0, 0), Vector3(0), 0.99, 5, 100, 500, 1, Vector3(0, 0, 125));
+	particles.push_back(dummyParticle);
+	sprgGen = new springLockGenerator(5, 50, anchor->getPosition());
+	myForceRegistry->addRegistry(sprgGen, particles.back());
+	myForceRegistry->addRegistry(gravGen, particles.back());*/
+
+	//Muelle entre dos particulas
+	/*dummyParticle = new Particle(Vector3(0, 100, 0), Vector3(0), 0.99, 5, 100, 500, 1, Vector3(0, 0, 125));
+	particles.push_back(dummyParticle);
+	 particles.push_back(new Particle(Vector3(0, 0, 0), Vector3(0), 0.99, 50, 100, 500, 1, Vector3(0, 0, 125)));
+	sprgGen = new springLockGenerator(5, 50, dummyParticle);
+	sprgGen1 = new springLockGenerator(5, 50,particles.back() );
+	myForceRegistry->addRegistry(sprgGen, particles.back());
+	myForceRegistry->addRegistry(sprgGen1, dummyParticle);
+	myForceRegistry->addRegistry(gravGen, particles.back());*/
+
+	//Goma entre dos particulas
+	dummyParticle = new Particle(Vector3(0, 100, 0), Vector3(0), 0.99, 5, 100, 500, 1, Vector3(0, 0, 125));
+	particles.push_back(dummyParticle);
+	 particles.push_back(new Particle(Vector3(0, 0, 0), Vector3(0), 0.99, 50, 100, 500, 1, Vector3(0, 0, 125)));
+	sprgGen = new springLockGenerator(5, 50, dummyParticle,true);
+	sprgGen1 = new springLockGenerator(5, 50,particles.back(), true);
+	myForceRegistry->addRegistry(sprgGen, particles.back());
+	myForceRegistry->addRegistry(sprgGen1, dummyParticle);
+	myForceRegistry->addRegistry(gravGen, particles.back());
 	
-	//particles.push_back(new Particle(Vector3(0), Vector3(0), 0.9999, 5, 1, 100, 1, Vector3(0, 0, 125)));
-	//anchor = new Particle(Vector3(0,50,0), CreateShape(physx::PxBoxGeometry(Vector3(5))), Vector3(1, 0, 0));
-	//Particle* dummyParticle = new Particle(Vector3(0, 100, 0), Vector3(0), 0.99, 50, 100, 500, 1, Vector3(0, 0, 125));
-
-	Particle* dummyParticle= new Particle(Vector3(0), Vector3(0), 0.99, 50, 1, 100, 1, Vector3(1, 0, 0), CreateShape(physx::PxBoxGeometry(Vector3(5))));
-
+	//Flotacion
+	/*dummyParticle= new Particle(Vector3(0), Vector3(0), 0.99, 50, 1, 100, 1, Vector3(1, 0, 0), CreateShape(physx::PxBoxGeometry(Vector3(5))));
 	Particle* aquaSuperficie= new Particle(Vector3(0, -10, 0), CreateShape(physx::PxBoxGeometry(Vector3(20,2,20))), Vector3(0, 0, 1));
+	 particles.push_back(dummyParticle);
+	fltGen = new FloatingGenerator(5, 100, 1, aquaSuperficie);
+	myForceRegistry->addRegistry(fltGen, *particles.begin());
+	myForceRegistry->addRegistry(gravGen, *particles.begin());*/
 
-	//particles.push_back(new Particle(Vector3(0,-100,0), Vector3(0), 0.99, 5, 100, 500, 1, Vector3(0, 0, 125)));
+
+	//Slinky
+	/*anchor = new Particle(Vector3(0, 50, 0), CreateShape(physx::PxBoxGeometry(Vector3(5))), Vector3(1, 0, 0));
+	sprgGen = new springLockGenerator(5, 5, anchor->getPosition());
+
+	particles.push_back(new Particle(Vector3(20), Vector3(0), 0.99, 5, 1, 100, 1, Vector3(0, 0, 125)));
+	myForceRegistry->addRegistry(sprgGen, particles.back());
+	myForceRegistry->addRegistry(gravGen, particles.back());
+	for (int i = 0; i < 20; i++)
+	{
+		springLockGenerator* myGen = new springLockGenerator(5, 5, particles.back());
+		particles.push_back(new Particle(Vector3(0,-20*i,0), Vector3(0), 0.99, 50, 1, 100, 1, Vector3(0, 0, 125)));
+		myForceRegistry->addRegistry(myGen, particles.back());
+		myForceRegistry->addRegistry(gravGen, particles.back());
+	}*/
 
 	//Generador Gaussiano
 	//ParticleGenerator* ptGen = new GeneradorGaussiano(Vector3(50), Vector3(35), 0.3, model,true);
@@ -21,24 +65,14 @@ ParticleSystem::ParticleSystem() {
 	//partGenerator.push_back(ptGen);
 	//particles.push_back(new Firework(3, 10, Vector3(0,0,0), Vector3(0), Vector3(0), Vector3(0,10,0), 0.99, 5, 10, 3, 1, Vector3(0, 0, 125)));
 	//particles.push_back(new Particle(Vector3(0, -10, 0), Vector3(0),  Vector3(0, 1, 0), 0.99, 5, 100, 10, 1, Vector3(0, 0, 0)));
-	myForceRegistry = new ParticleForceRegistry();
-	gravGen = new GravityGenerator(Vector3(0, -10, 0));
+
+	
 	//windGen = new WindGenerator(Vector3(100, 0, 0), Vector3(0, 0, 0), 100, 1, 0);
 	//windGen = new TornadoGenerator(Vector3(0, 0, 0), Vector3(0, 0, 0), 100, 1, 0, 5);
 	//explGen = new ExplosionGenerator(Vector3(0), 1000, 500000, 5);
 	//explGen->setDuration(50);
 
-	/*sprgGen = new springLockGenerator(5, 50, dummyParticle);
-	sprgGen1 = new springLockGenerator(5, 50, particles.back());*/
 
-	fltGen = new FloatingGenerator(5, 100, 1, aquaSuperficie);
-
-	/*myForceRegistry->addRegistry(sprgGen, particles.back());
-	myForceRegistry->addRegistry(sprgGen1, dummyParticle);*/
-	particles.push_back(dummyParticle);
-
-	myForceRegistry->addRegistry(gravGen, *particles.begin());
-	myForceRegistry->addRegistry(fltGen, *particles.begin());
 	//myForceRegistry->addRegistry(gravGen, particles.back());*/
 	/*myForceRegistry->addRegistry(windGen, *particles.begin());*/
 }

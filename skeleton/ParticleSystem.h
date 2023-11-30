@@ -22,7 +22,8 @@ private:
 	springLockGenerator* sprgGen = nullptr;
 	springLockGenerator* sprgGen1 = nullptr;
 	FloatingGenerator* fltGen = nullptr;
-	Particle* anchor;
+	Particle* anchor = nullptr;
+	Particle* dummyParticle = nullptr;
 
 public:
 	ParticleSystem();
@@ -31,5 +32,13 @@ public:
 	ParticleGenerator* getParticleGenerator(std::string name);
 	void explosion();
 	void generateFireworkSystem();
+	inline void Engorda()
+	{
+		if (dummyParticle != nullptr) dummyParticle->Engorda();
+	}
+	inline void Adelgaza()
+	{
+		if (dummyParticle != nullptr) dummyParticle->Adelgaza();
+	}
 };
 
