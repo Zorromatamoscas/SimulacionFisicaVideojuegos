@@ -26,13 +26,43 @@
     <ClCompile Include="callbacks.cpp">
       <Filter>RenderItems</Filter>
     </ClCompile>
-    <ClCompile Include="ForceGenerator.cpp" />
-    <ClCompile Include="GravityGenerator.cpp" />
-    <ClCompile Include="WindGenerator.cpp" />
-    <ClCompile Include="TornadoGenerator.cpp" />
-    <ClCompile Include="ExplosionGenerator.cpp" />
-    <ClCompile Include="springLockGenerator.cpp" />
-    <ClCompile Include="FloatingGenerator.cpp" />
+    <ClCompile Include="FloatingGenerator.cpp">
+      <Filter>ForceGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="ForceGenerator.cpp">
+      <Filter>ForceGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="GravityGenerator.cpp">
+      <Filter>ForceGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="springLockGenerator.cpp">
+      <Filter>ForceGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="TornadoGenerator.cpp">
+      <Filter>ForceGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="WindGenerator.cpp">
+      <Filter>ForceGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="ExplosionGenerator.cpp">
+      <Filter>ForceGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="RigidBody.cpp">
+      <Filter>RenderItems</Filter>
+    </ClCompile>
+    <ClCompile Include="RigidGenerator.cpp">
+      <Filter>Generadores</Filter>
+    </ClCompile>
+    <ClCompile Include="GaussianoRigido.cpp">
+      <Filter>Generadores</Filter>
+    </ClCompile>
+    <ClCompile Include="RigidSystem.cpp" />
+    <ClCompile Include="ExplosionRigid.cpp">
+      <Filter>RigidGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="RigidForceGenerator.cpp">
+      <Filter>RigidGenerator</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -58,14 +88,45 @@
     </ClInclude>
     <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="Firework.h" />
-    <ClInclude Include="ForceGenerator.h" />
-    <ClInclude Include="GravityGenerator.h" />
     <ClInclude Include="ParticleForceRegistry.h" />
-    <ClInclude Include="WindGenerator.h" />
-    <ClInclude Include="TornadoGenerator.h" />
-    <ClInclude Include="ExplosionGenerator.h" />
-    <ClInclude Include="springLockGenerator.h" />
-    <ClInclude Include="FloatingGenerator.h" />
+    <ClInclude Include="FloatingGenerator.h">
+      <Filter>ForceGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="ForceGenerator.h">
+      <Filter>ForceGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="GravityGenerator.h">
+      <Filter>ForceGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="springLockGenerator.h">
+      <Filter>ForceGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="TornadoGenerator.h">
+      <Filter>ForceGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="WindGenerator.h">
+      <Filter>ForceGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="ExplosionGenerator.h">
+      <Filter>ForceGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidBody.h">
+      <Filter>RenderItems</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidGenerator.h">
+      <Filter>Generadores</Filter>
+    </ClInclude>
+    <ClInclude Include="GaussianoRigido.h">
+      <Filter>Generadores</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidSystem.h" />
+    <ClInclude Include="RigidsRegistry.h" />
+    <ClInclude Include="ExplosionRigid.h">
+      <Filter>RigidGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidForceGenerator.h">
+      <Filter>RigidGenerator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">
@@ -76,6 +137,15 @@
     </Filter>
     <Filter Include="Generadores">
       <UniqueIdentifier>{7531574f-aba1-4e3a-8716-99e9da9ca4f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ForceGenerator">
+      <UniqueIdentifier>{3ae67c09-d7ce-4b22-935f-3ad8629fe2ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RigidGenerator">
+      <UniqueIdentifier>{83002e33-3b49-4e4b-ae9c-81fbf535d011}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ForceRigids">
+      <UniqueIdentifier>{e9dd64c8-4019-4eb3-8af3-1b4c599620e8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -12,6 +12,7 @@
 #include "Particle.h"
 #include<vector>
 #include "ParticleSystem.h"
+#include "RigidSystem.h"
 
 std::string display_text = "This is a test";
 
@@ -34,7 +35,8 @@ PxScene*				gScene      = NULL;
 ContactReportCallback gContactReportCallback;
 
 std::vector<Particle*> myBullets;
-ParticleSystem* myParticles;
+ParticleSystem* myParticles=nullptr;
+RigidSystem* myRigids=nullptr;
 
 
 // Initialize physics engine
@@ -62,7 +64,15 @@ void initPhysics(bool interactive)
 	sceneDesc.simulationEventCallback = &gContactReportCallback;
 	gScene = gPhysics->createScene(sceneDesc);
 
-	myParticles = new ParticleSystem();
+	PxRigidStatic* suelo = gPhysics->createRigidStatic(PxTransform({ 0,0,0 }));
+	PxShape* shape = CreateShape(PxBoxGeometry(100, 0.1, 100));
+	suelo->attachShape(*shape);
+	gScene->addActor(*suelo);
+	RenderItem* mySuelo = new RenderItem(shape, suelo, { 0.8,0.8,0.8,1 });
+
+	//myParticles = new ParticleSystem();
+	myRigids = new RigidSystem(gPhysics, gScene, 100);
+
 
 	}
 
@@ -77,7 +87,8 @@ void stepPhysics(bool interactive, double t)
 	gScene->simulate(t);
 	gScene->fetchResults(true);
 	//Se actualizan las balas
-	myParticles->update(t);
+	if(myParticles!=nullptr)myParticles->update(t);
+	if (myRigids != nullptr)myRigids->update(t);
 
 }
 
@@ -87,7 +98,8 @@ void cleanupPhysics(bool interactive)
 {
 	//Borra las particulas
 	//for (Particle* p : myBullets) delete p;
-	delete myParticles;
+	if (myParticles != nullptr) delete myParticles;
+	if (myRigids != nullptr) delete myRigids;
 
 	PX_UNUSED(interactive);
 
@@ -120,22 +132,23 @@ void keyPress(unsigned char key, const PxTransform& camera)
 	}
 	case 'E':
 	{
-		myParticles->explosion();
+		if (myParticles != nullptr)myParticles->explosion();
+		if (myRigids != nullptr)myRigids->explosion();
 		break;
 	}
 	case 'Z':
 	{
-		myParticles->Engorda();
+		if (myParticles != nullptr)myParticles->Engorda();
 		break;
 	}
 	case 'X':
 	{
-		myParticles->Adelgaza();
+		if (myParticles != nullptr)myParticles->Adelgaza();
 		break;
 	}
 
 	default:
-		myParticles->Adelgaza();
+		if (myParticles != nullptr)myParticles->Adelgaza();
 		break;
 	}
 }
