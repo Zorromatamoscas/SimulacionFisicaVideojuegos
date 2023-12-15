@@ -277,6 +277,7 @@
     <ClCompile Include="springLockGenerator.cpp" />
     <ClCompile Include="TornadoGenerator.cpp" />
     <ClCompile Include="WindGenerator.cpp" />
+    <ClCompile Include="WindRigid.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="callbacks.hpp" />
@@ -305,6 +306,7 @@
     <ClInclude Include="springLockGenerator.h" />
     <ClInclude Include="TornadoGenerator.h" />
     <ClInclude Include="WindGenerator.h" />
+    <ClInclude Include="WindRigid.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

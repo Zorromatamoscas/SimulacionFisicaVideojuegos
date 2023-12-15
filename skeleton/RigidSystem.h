@@ -4,6 +4,7 @@
 #include "Firework.h"
 #include "RigidsRegistry.h"
 #include "ExplosionRigid.h"
+#include "WindRigid.h"
 class RigidSystem
 {
 private:
@@ -15,6 +16,7 @@ private:
 	PxPhysics* myFisicas=nullptr;
 	PxScene* myScene = nullptr;
 	ExplosionRigid* explGen = nullptr;
+	WindRigid* windGen = nullptr;
 	RigidBody* model2 = nullptr;
 public:
 	RigidSystem(PxPhysics* fisicas, PxScene* escena, int maxRigids);

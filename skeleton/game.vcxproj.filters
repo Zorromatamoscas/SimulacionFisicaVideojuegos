@@ -63,6 +63,9 @@
     <ClCompile Include="GaussianoRigido.cpp">
       <Filter>RigidGenerator</Filter>
     </ClCompile>
+    <ClCompile Include="WindRigid.cpp">
+      <Filter>ForceRigids</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -126,6 +129,9 @@
     </ClInclude>
     <ClInclude Include="GaussianoRigido.h">
       <Filter>RigidGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="WindRigid.h">
+      <Filter>ForceRigids</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
