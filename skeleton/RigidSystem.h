@@ -15,6 +15,7 @@ private:
 	PxPhysics* myFisicas=nullptr;
 	PxScene* myScene = nullptr;
 	ExplosionRigid* explGen = nullptr;
+	RigidBody* model2 = nullptr;
 public:
 	RigidSystem(PxPhysics* fisicas, PxScene* escena, int maxRigids);
 	~RigidSystem();

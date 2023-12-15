@@ -12,7 +12,6 @@ class RigidBody
 {
 protected:
 	//Parametros simulados
-	RenderItem* myShape;
 	PxRigidDynamic* myRigid;
 	RenderItem* myRender;
 	Vector3 myColor;
@@ -24,7 +23,7 @@ protected:
 	Vector3 myPos;
 
 public:
-	RigidBody(PxPhysics* fisicas, PxScene* scene, float boxDimens,float density, Vector3 pos, Vector3 color, int lft)
+	RigidBody(PxPhysics* fisicas, PxScene* scene, float boxDimens,float density, Vector3 pos, Vector3 color, int lft, bool model=false)
 	{
 		myColor = color;
 		mySize = boxDimens;
@@ -36,10 +35,9 @@ public:
 		lifeTime = lft;
 		PxShape* shape = CreateShape(PxBoxGeometry(mySize, mySize, mySize));
 		myRigid->attachShape(*shape);
-		scene->addActor(*myRigid);
+		if(!model)scene->addActor(*myRigid);
 		myRender = new RenderItem(shape, myRigid, Vector4(myColor,1));
 		PxRigidBodyExt::updateMassAndInertia(*myRigid, myDensity);
-		myRigid->clearForce();
 	}
 
 	virtual ~RigidBody()

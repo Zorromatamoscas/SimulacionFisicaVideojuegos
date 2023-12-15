@@ -1,6 +1,8 @@
 #include "ExplosionRigid.h"
 ExplosionRigid::ExplosionRigid(Vector3 ExpPos, double radio, float ExpStrength, float timeconstant, bool activ)
-	: pos(ExpPos), strength(ExpStrength), radius(radio), timeConstant(timeconstant), activated(activ) {}
+	: pos(ExpPos), strength(ExpStrength), radius(radio), timeConstant(timeconstant), activated(activ) {
+	setDuration(3);
+}
 
 void ExplosionRigid::updateForce(RigidBody* p, double t)
 {

@@ -53,14 +53,14 @@
     <ClCompile Include="RigidGenerator.cpp">
       <Filter>Generadores</Filter>
     </ClCompile>
-    <ClCompile Include="GaussianoRigido.cpp">
-      <Filter>Generadores</Filter>
-    </ClCompile>
     <ClCompile Include="RigidSystem.cpp" />
     <ClCompile Include="ExplosionRigid.cpp">
-      <Filter>RigidGenerator</Filter>
+      <Filter>ForceRigids</Filter>
     </ClCompile>
     <ClCompile Include="RigidForceGenerator.cpp">
+      <Filter>ForceRigids</Filter>
+    </ClCompile>
+    <ClCompile Include="GaussianoRigido.cpp">
       <Filter>RigidGenerator</Filter>
     </ClCompile>
   </ItemGroup>
@@ -116,15 +116,15 @@
     <ClInclude Include="RigidGenerator.h">
       <Filter>Generadores</Filter>
     </ClInclude>
-    <ClInclude Include="GaussianoRigido.h">
-      <Filter>Generadores</Filter>
-    </ClInclude>
     <ClInclude Include="RigidSystem.h" />
     <ClInclude Include="RigidsRegistry.h" />
     <ClInclude Include="ExplosionRigid.h">
-      <Filter>RigidGenerator</Filter>
+      <Filter>ForceRigids</Filter>
     </ClInclude>
     <ClInclude Include="RigidForceGenerator.h">
+      <Filter>ForceRigids</Filter>
+    </ClInclude>
+    <ClInclude Include="GaussianoRigido.h">
       <Filter>RigidGenerator</Filter>
     </ClInclude>
   </ItemGroup>

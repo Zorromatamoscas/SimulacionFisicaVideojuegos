@@ -5,10 +5,11 @@ RigidSystem::RigidSystem(PxPhysics* fisicas, PxScene* escena, int maxRigids) {
 	myFisicas = fisicas;
 	myScene = escena;
 	myForceRegistry = new RigidsRegistry();
-	RigidBody* model = new RigidBody(fisicas, escena, 5, 0.5, Vector3(0), Vector3(255, 255, 255), 0);
+	RigidBody* model = new RigidBody(fisicas, escena, 5, 0.001, Vector3(0), Vector3(255, 255, 255), 5,true);
+	model2 = new RigidBody(fisicas, escena, 5, 0.001, Vector3(50,50,0), Vector3(250, 0, 0), 5);
 	RigidGenerator* ptGen = new GaussianoRigido(Vector3(0,0,0), Vector3(35),0.3,model,true);
 	partGenerator.push_back(ptGen);
-	explGen = new ExplosionRigid(Vector3(0, 50, 0), 1000, 50000, 5);
+	explGen = new ExplosionRigid(Vector3(0, 10, 0), 1000, 500000, 5);
 }
 
 RigidSystem::~RigidSystem() {
@@ -39,7 +40,6 @@ void RigidSystem::update(double t) {
 			}
 		}
 	}
-
 	myForceRegistry->updateForces(t);
 
 	for (auto it = particles.begin(); it != particles.end(); it++) {
