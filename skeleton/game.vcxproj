@@ -254,11 +254,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="callbacks.cpp" />
+    <ClCompile Include="Car.cpp" />
     <ClCompile Include="ExplosionGenerator.cpp" />
     <ClCompile Include="ExplosionRigid.cpp" />
     <ClCompile Include="Firework.cpp" />
     <ClCompile Include="FloatingGenerator.cpp" />
     <ClCompile Include="ForceGenerator.cpp" />
+    <ClCompile Include="gameObject.cpp" />
     <ClCompile Include="GaussianoRigido.cpp" />
     <ClCompile Include="GeneradorGaussiano.cpp" />
     <ClCompile Include="GeneradorNormal.cpp" />
@@ -267,6 +269,7 @@
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="ParticleGenerator.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
+    <ClCompile Include="PowerUps.cpp" />
     <ClCompile Include="RenderUtils.cpp" />
     <ClCompile Include="Render\Camera.cpp" />
     <ClCompile Include="Render\Render.cpp" />
@@ -281,12 +284,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="callbacks.hpp" />
+    <ClInclude Include="Car.h" />
     <ClInclude Include="core.hpp" />
     <ClInclude Include="ExplosionGenerator.h" />
     <ClInclude Include="ExplosionRigid.h" />
     <ClInclude Include="Firework.h" />
     <ClInclude Include="FloatingGenerator.h" />
     <ClInclude Include="ForceGenerator.h" />
+    <ClInclude Include="gameObject.h" />
     <ClInclude Include="GaussianoRigido.h" />
     <ClInclude Include="GeneradorGaussiano.h" />
     <ClInclude Include="GeneradorNormal.h" />
@@ -295,6 +300,7 @@
     <ClInclude Include="ParticleForceRegistry.h" />
     <ClInclude Include="ParticleGenerator.h" />
     <ClInclude Include="ParticleSystem.h" />
+    <ClInclude Include="PowerUps.h" />
     <ClInclude Include="RenderUtils.hpp" />
     <ClInclude Include="Render\Camera.h" />
     <ClInclude Include="Render\Render.h" />

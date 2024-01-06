@@ -5,6 +5,7 @@
 #include "RigidsRegistry.h"
 #include "ExplosionRigid.h"
 #include "WindRigid.h"
+#include "Car.h"
 class RigidSystem
 {
 private:

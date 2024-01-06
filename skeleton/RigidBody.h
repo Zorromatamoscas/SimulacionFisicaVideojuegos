@@ -18,12 +18,13 @@ protected:
 	float lifeTime;
 	float mySize;
 	float myDensity;
+	bool inmortal;
 	PxPhysics* myFisicas;
 	PxScene* myScene;
 	Vector3 myPos;
 
 public:
-	RigidBody(PxPhysics* fisicas, PxScene* scene, float boxDimens,float density, Vector3 pos, Vector3 color, int lft, bool model=false)
+	RigidBody(PxPhysics* fisicas, PxScene* scene, float boxDimens,float density, Vector3 pos, Vector3 color, int lft, bool model=false, bool inmrtl=false)
 	{
 		myColor = color;
 		mySize = boxDimens;
@@ -33,6 +34,7 @@ public:
 		myPos = pos;
 		myRigid = fisicas->createRigidDynamic(PxTransform(pos));
 		lifeTime = lft;
+		inmortal = inmrtl;
 		PxShape* shape = CreateShape(PxBoxGeometry(mySize, mySize, mySize));
 		myRigid->attachShape(*shape);
 		if(!model)scene->addActor(*myRigid);
@@ -59,8 +61,13 @@ public:
 
 	bool isAlive(float t)
 	{
-		lifeTime -= t;
+		if(!inmortal)lifeTime -= t;
 		return lifeTime > 0;
+	}
+
+	PxRigidDynamic* getRigid()
+	{
+		return myRigid;
 	}
 	inline void addForce(Vector3 force)
 	{
@@ -78,6 +85,7 @@ public:
 	{
 		return myRigid->getLinearVelocity();
 	}
+
 	inline PxPhysics* getPhysics()
 	{
 		return myFisicas;
