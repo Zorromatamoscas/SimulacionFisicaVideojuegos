@@ -24,7 +24,8 @@ protected:
 	Vector3 myPos;
 
 public:
-	RigidBody(PxPhysics* fisicas, PxScene* scene, float boxDimens,float density, Vector3 pos, Vector3 color, int lft, bool model=false, bool inmrtl=false)
+	RigidBody(PxPhysics* fisicas, PxScene* scene, float boxDimens,float density, Vector3 pos, Vector3 color, int lft, bool model=false, bool inmrtl=false
+	)
 	{
 		myColor = color;
 		mySize = boxDimens;
@@ -37,6 +38,7 @@ public:
 		inmortal = inmrtl;
 		PxShape* shape = CreateShape(PxBoxGeometry(mySize, mySize, mySize));
 		myRigid->attachShape(*shape);
+
 		if(!model)scene->addActor(*myRigid);
 		myRender = new RenderItem(shape, myRigid, Vector4(myColor,1));
 		PxRigidBodyExt::updateMassAndInertia(*myRigid, myDensity);

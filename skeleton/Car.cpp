@@ -24,7 +24,3 @@ void Car::accelerate()
 {
 	if (myBody->getVel().x <= 100) myBody->addForce(Vector3(1000, 0, 0));
 }
-void Car::checkCollision(GameObject* other)
-{
-	
-}
