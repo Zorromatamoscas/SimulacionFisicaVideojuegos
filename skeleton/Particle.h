@@ -23,10 +23,11 @@ protected:
 	float lifeTime;
 	float scaleValue;
 	Vector3 myForce;
+	float myRadius;
 
 public:
 
-	Particle(const PxVec3 pos, Vector3 velIni, float damp, float mass, float speed,float lifeT, float scalingValue, Vector3 color)
+	Particle(const PxVec3 pos, Vector3 velIni, float damp, float mass, float speed,float lifeT, float scalingValue, Vector3 color, bool model=false)
 	{
 		pose = PxTransform(pos);
 		myForce = Vector3(0);
@@ -40,10 +41,11 @@ public:
 		//masa simulada a una centesima de la velocidad
 		myMass = mass* pow(1/scalingValue,2);
 		inv_myMass = 1 / myMass;
-		myShape = new RenderItem(CreateShape(physx::PxSphereGeometry(1)), &pose, Vector4(color.x, color.y, color.z, 1));
+		myRadius = 1;
+		if (!model)myShape = new RenderItem(CreateShape(physx::PxSphereGeometry(myRadius)), &pose, Vector4(color.x, color.y, color.z, 1));
 
 	}
-	Particle(const PxVec3 pos, PxShape* form, Vector3 color)
+	Particle(const PxVec3 pos, PxShape* form, Vector3 color, bool model = false)
 	{
 		pose = PxTransform(pos);
 		myForce = Vector3(0);
@@ -57,10 +59,11 @@ public:
 		//masa simulada a una centesima de la velocidad
 		myMass = 0;
 		inv_myMass = 1 / myMass;
-		myShape = new RenderItem(form, &pose, Vector4(color.x, color.y, color.z, 1));
+		if(!model)myShape = new RenderItem(form, &pose, Vector4(color.x, color.y, color.z, 1));
 	};
 
-	Particle(const PxVec3 pos, Vector3 velIni, float damp, float mass, float speed, float lifeT, float scalingValue, Vector3 color, PxShape* form)
+	Particle(const PxVec3 pos, Vector3 velIni, float damp, float mass, float speed, float lifeT, 
+		float scalingValue, Vector3 color, PxShape* form, bool model = false)
 	{
 		pose = PxTransform(pos);
 		myForce = Vector3(0);
@@ -74,7 +77,7 @@ public:
 		//masa simulada a una centesima de la velocidad
 		myMass = mass * pow(1 / scalingValue, 2);
 		inv_myMass = 1 / myMass;
-		myShape = new RenderItem(form, &pose, Vector4(color.x, color.y, color.z, 1));
+		if (!model)myShape = new RenderItem(form, &pose, Vector4(color.x, color.y, color.z, 1));
 
 	}
 
@@ -109,7 +112,7 @@ public:
 	{
 		return vel;
 	}
-	void integrate(double t)
+	virtual void integrate(double t)
 	{
 		Vector3 resulting_accel = myForce * inv_myMass;
 		vel += resulting_accel * t;

@@ -24,9 +24,11 @@ private:
 	FloatingGenerator* fltGen = nullptr;
 	Particle* anchor = nullptr;
 	Particle* dummyParticle = nullptr;
+	float myCooldown;
+	float elapsedCoolDown;
 
 public:
-	ParticleSystem();
+	ParticleSystem(float coolDown=0);
 	~ParticleSystem();
 	void update(double t);
 	ParticleGenerator* getParticleGenerator(std::string name);

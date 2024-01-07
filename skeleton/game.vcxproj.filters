@@ -66,6 +66,11 @@
     <ClCompile Include="WindRigid.cpp">
       <Filter>ForceRigids</Filter>
     </ClCompile>
+    <ClCompile Include="Car.cpp" />
+    <ClCompile Include="gameObject.cpp" />
+    <ClCompile Include="PowerUps.cpp">
+      <Filter>PowerUps</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -133,6 +138,14 @@
     <ClInclude Include="WindRigid.h">
       <Filter>ForceRigids</Filter>
     </ClInclude>
+    <ClInclude Include="Car.h" />
+    <ClInclude Include="gameObject.h" />
+    <ClInclude Include="PowerUps.h">
+      <Filter>PowerUps</Filter>
+    </ClInclude>
+    <ClInclude Include="Bomb.h">
+      <Filter>PowerUps</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">
@@ -152,6 +165,9 @@
     </Filter>
     <Filter Include="ForceRigids">
       <UniqueIdentifier>{e9dd64c8-4019-4eb3-8af3-1b4c599620e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PowerUps">
+      <UniqueIdentifier>{29735408-789d-4fa7-a1ce-2058cedf859e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

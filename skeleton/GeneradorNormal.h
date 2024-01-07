@@ -1,5 +1,6 @@
 #pragma once
 #include "ParticleGenerator.h"
+// FALTA QUE GENERE BOMBAS O VIENTO ALEATORIAMENTE
 class GeneradorNormal: public ParticleGenerator
 {
 private:

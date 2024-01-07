@@ -1,5 +1,6 @@
 #pragma once
 #include "ForceGenerator.h"
+// TENGO QUE HACER QUE SE ELIMINE A SI MISMO TRAS SER USADO (PROBABLEMENTE INCLUYENDO EL REGISTRY O CON ALGUNA FLAG)
 class ExplosionGenerator: public ForceGenerator
 {
 private:

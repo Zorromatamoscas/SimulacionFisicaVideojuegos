@@ -57,7 +57,7 @@ void initPhysics(bool interactive)
 	// For Solid Rigids +++++++++++++++++++++++++++++++++++++
 	PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
 
-	sceneDesc.gravity = PxVec3(0.0f, -9.8f, 0.0f);
+	sceneDesc.gravity = PxVec3(0.0f, -20.0f, 0.0f);
 	gDispatcher = PxDefaultCpuDispatcherCreate(2);
 	sceneDesc.cpuDispatcher = gDispatcher;
 	sceneDesc.filterShader = contactReportFilterShader;
@@ -65,13 +65,14 @@ void initPhysics(bool interactive)
 	gScene = gPhysics->createScene(sceneDesc);
 
 	PxRigidStatic* suelo = gPhysics->createRigidStatic(PxTransform({ 0,0,0 }));
-	PxShape* shape = CreateShape(PxBoxGeometry(100, 0.1, 100));
+	PxShape* shape = CreateShape(PxBoxGeometry(100, 0.1, 100), gPhysics->createMaterial(0.3f, 0.3f, 0.0f));
 	suelo->attachShape(*shape);
 	gScene->addActor(*suelo);
-	RenderItem* mySuelo = new RenderItem(shape, suelo, { 0.8,0.8,0.8,1 });
+	RenderItem* mySuelo = new RenderItem(shape, suelo, Vector4(0.2,0.2,1,1));
 
 	//myParticles = new ParticleSystem();
 	myRigids = new RigidSystem(gPhysics, gScene, 100);
+	myParticles = new ParticleSystem();
 
 
 	}

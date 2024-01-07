@@ -34,7 +34,7 @@ std::list<Particle*> GeneradorNormal::generateParticles() {
 		// Variables aleatorias
 		Vector3 vel = Vector3((*xVel)(gen), (*yVel)(gen), (*zVel)(gen));
 		Vector3 accl = Vector3(0);
-		int lifeTime = rand() % 10 + 3;
+		int lifeTime = 15;
 
 		// Crear partícula
 		if (!anclado) {

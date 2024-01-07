@@ -7,6 +7,8 @@ private:
 	RigidBody* myBody;
 	RigidBody* myBumper;
 	RigidBody* myRear;
+	float colliderRadius;
+	Vector3 myPos;
 
 public:
 	Car(PxPhysics* fsc, PxScene* scn, Vector3 pos, bool player1);
@@ -15,6 +17,18 @@ public:
 	void accelerate();
 	void rotate() {};
 	void checkCollision(GameObject* other);
+	inline float getColliderRadius()
+	{
+		return colliderRadius;
+	}
+	inline Vector3 getPos()
+	{
+		return myPos;
+	}
+	RigidBody* Car::getBody()
+	{
+		return myBody;
+	}
 };
 
 

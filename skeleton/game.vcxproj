@@ -296,6 +296,7 @@
     <ClInclude Include="GeneradorGaussiano.h" />
     <ClInclude Include="GeneradorNormal.h" />
     <ClInclude Include="GravityGenerator.h" />
+    <ClInclude Include="Bomb.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="ParticleForceRegistry.h" />
     <ClInclude Include="ParticleGenerator.h" />

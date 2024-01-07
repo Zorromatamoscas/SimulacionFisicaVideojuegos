@@ -22,10 +22,11 @@ protected:
 	PxPhysics* myFisicas;
 	PxScene* myScene;
 	Vector3 myPos;
+	PxMaterial* mMaterial;
 
 public:
-	RigidBody(PxPhysics* fisicas, PxScene* scene, float boxDimens,float density, Vector3 pos, Vector3 color, int lft, bool model=false, bool inmrtl=false
-	)
+	RigidBody(PxPhysics* fisicas, PxScene* scene, float boxDimens,float density, Vector3 pos, Vector3 color, 
+		int lft, bool model=false, bool inmrtl=false, bool car=false)
 	{
 		myColor = color;
 		mySize = boxDimens;
@@ -33,14 +34,17 @@ public:
 		myScene = scene;
 		myFisicas = fisicas;
 		myPos = pos;
+
+		mMaterial = fisicas->createMaterial(0.5f, 0.5f, 0.1f); // static friction, dynamic friction,
+		// restitution
 		myRigid = fisicas->createRigidDynamic(PxTransform(pos));
 		lifeTime = lft;
 		inmortal = inmrtl;
-		PxShape* shape = CreateShape(PxBoxGeometry(mySize, mySize, mySize));
+		PxShape* shape = CreateShape(PxBoxGeometry(mySize, mySize, mySize),mMaterial);
 		myRigid->attachShape(*shape);
 
-		if(!model)scene->addActor(*myRigid);
-		myRender = new RenderItem(shape, myRigid, Vector4(myColor,1));
+		if(!model && !car)scene->addActor(*myRigid);
+		if (!model)myRender = new RenderItem(shape, myRigid, Vector4(myColor,1));
 		PxRigidBodyExt::updateMassAndInertia(*myRigid, myDensity);
 	}
 
@@ -95,6 +99,10 @@ public:
 	inline PxScene* getScene()
 	{
 		return myScene;
+	}
+	inline void bumperIt()
+	{
+		mMaterial->setRestitution(1);
 	}
 
 };

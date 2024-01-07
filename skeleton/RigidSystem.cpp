@@ -6,7 +6,6 @@ RigidSystem::RigidSystem(PxPhysics* fisicas, PxScene* escena, int maxRigids) {
 	myScene = escena;
 	myForceRegistry = new RigidsRegistry();
 	RigidBody* model = new RigidBody(fisicas, escena, 5, 0.001, Vector3(0), Vector3(255, 255, 255), 5,true);
-	model2 = new RigidBody(fisicas, escena, 5, 0.001, Vector3(50,50,0), Vector3(250, 0, 0), 5);
 	//RigidGenerator* ptGen = new GaussianoRigido(Vector3(0,0,0), Vector3(35),0.3,model,true);
 	//partGenerator.push_back(ptGen);
 	explGen = new ExplosionRigid(Vector3(0, 10, 0), 1000, 500000, 5);

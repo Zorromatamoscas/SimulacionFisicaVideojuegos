@@ -1,20 +1,19 @@
 #pragma once
 #include "gameObject.h"
-class PowerUps: public GameObject
+#include "Car.h"
+#include "Particle.h"
+class PowerUps: public Particle
 {
+protected:
 public:
-	PowerUps(PxPhysics* fsc, PxScene* scn, Vector3 pos);
-	virtual ~PowerUps();
-
-private:
-
+	PowerUps(Vector3 pos, Vector3 color);
+	bool checkCollisions(Car* car);
+	virtual void integrate(double t)
+	{
+		lifeTime -= t;
+	}
+	virtual void applyPower(Car* car) = 0;
 };
 	
-PowerUps::PowerUps(PxPhysics* fsc, PxScene* scn, Vector3 pos):GameObject(fsc, scn)
-{
-}
 
-PowerUps::~PowerUps()
-{
-};
 
