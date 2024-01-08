@@ -146,6 +146,9 @@
     <ClInclude Include="Bomb.h">
       <Filter>PowerUps</Filter>
     </ClInclude>
+    <ClInclude Include="WindPowerUp.h">
+      <Filter>PowerUps</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">

@@ -9,6 +9,8 @@
 #include "ExplosionGenerator.h"
 #include "springLockGenerator.h"
 #include "FloatingGenerator.h"
+#include "Bomb.h"
+#include "WindPowerUp.h"
 class ParticleSystem
 {
 private:
@@ -28,7 +30,7 @@ private:
 	float elapsedCoolDown;
 
 public:
-	ParticleSystem(float coolDown=0);
+	ParticleSystem(RigidSystem* system,float coolDown=0);
 	~ParticleSystem();
 	void update(double t);
 	ParticleGenerator* getParticleGenerator(std::string name);

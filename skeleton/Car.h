@@ -9,6 +9,7 @@ private:
 	RigidBody* myRear;
 	float colliderRadius;
 	Vector3 myPos;
+	bool player1;
 
 public:
 	Car(PxPhysics* fsc, PxScene* scn, Vector3 pos, bool player1);
@@ -28,6 +29,10 @@ public:
 	RigidBody* Car::getBody()
 	{
 		return myBody;
+	}
+	inline bool isPlayer1()
+	{
+		return player1;
 	}
 };
 

@@ -313,6 +313,7 @@
     <ClInclude Include="springLockGenerator.h" />
     <ClInclude Include="TornadoGenerator.h" />
     <ClInclude Include="WindGenerator.h" />
+    <ClInclude Include="WindPowerUp.h" />
     <ClInclude Include="WindRigid.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

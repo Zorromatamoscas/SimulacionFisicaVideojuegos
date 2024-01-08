@@ -1,24 +1,22 @@
 #pragma once
 #include "PowerUps.h"
-#include "RigidSystem.h"
-class Bomb:public PowerUps
+class WindPowerUp: public PowerUps
 {
-private:
-	bool activate = false;
-
 public:
-	Bomb(Vector3 pos, RigidSystem* system, bool model=false): PowerUps(pos,Vector3(0,0,0), system, model)
+	WindPowerUp(Vector3 pos, RigidSystem* system, bool model = false) : PowerUps(pos, Vector3(0, 1, 0),system,model)
 	{
 	}
 	virtual void applyPower(Car* car)
 	{
+		if (car->isPlayer1()) car = mySystem->getPlayer2();
+		else car = mySystem->getPlayer1();
 		mySystem->getRegistry()->addRegistry(new ExplosionRigid(pose.p, 50, 500000, 3), car->getBody());
 		lifeTime = -1;
 	}
 	virtual Particle* clone(Vector3 newPos, Vector3 newVel, float newLifeTime) const {
-		return new Bomb(newPos,mySystem);
+		return new WindPowerUp(newPos, mySystem);
 	}
 	virtual Particle* clone(Vector3 newVel, float newLifeTime) const {
-		return new Bomb(pose.p, mySystem);
+		return new WindPowerUp(pose.p, mySystem);
 	}
 };

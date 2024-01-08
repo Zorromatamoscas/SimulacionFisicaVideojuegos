@@ -13,6 +13,11 @@ public:
 		for (auto it = begin(); it != end(); it++)
 		{
 			it->first->updateForce(it->second, t);
+			// Si se acaba el tiempo del generador, borralo
+			if (it->first->updateTime(t))
+			{
+				deletePartReg(it->second);
+			}
 		}
 	}
 	void addRegistry(RigidForceGenerator* fg, RigidBody* p)

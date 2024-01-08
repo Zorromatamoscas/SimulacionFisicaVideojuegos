@@ -57,8 +57,8 @@ void keyboardCallback(unsigned char key, int x, int y)
 	if(key==27)
 		exit(0);
 
-	if(!sCamera->handleKey(key, x, y))
-		keyPress(key, sCamera->getTransform());
+	/*if (!sCamera->handleKey(key, x, y))
+		keyPress(key, sCamera->getTransform());*/
 }
 
 void mouseCallback(int button, int state, int x, int y)
@@ -137,7 +137,7 @@ void exitCallback(void)
 void renderLoop()
 {
 	StartCounter();
-	sCamera = new Camera(PxVec3(50.0f, 50.0f, 50.0f), PxVec3(-0.6f,-0.2f,-0.7f));
+	sCamera = new Camera(PxVec3(0.0f, 120.0f, -200.0f), PxVec3(0.0f,-0.5f,1.0f));
 
 	setupDefaultWindow("Simulacion Fisica Videojuegos");
 	setupDefaultRenderState();

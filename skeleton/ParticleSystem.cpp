@@ -1,9 +1,12 @@
 #include "ParticleSystem.h"
-ParticleSystem::ParticleSystem(float coolDown=0) {
+ParticleSystem::ParticleSystem(RigidSystem* system, float coolDown) {
 
 	//Generador Uniforme
-	Particle* model = new Particle(Vector3(0, 10, 0), Vector3(0), 0, 0, 0.99, 5, 15, Vector3(0, 125, 0),true);
-	ParticleGenerator* ptGen = new GeneradorNormal(Vector3(50), Vector3(35), 0.3, model, false);
+	Particle* modelBomb = new Bomb(Vector3(0, 5, 0), system,true);
+	Particle* modelWindPower = new WindPowerUp(Vector3(0, 5, 0), system, true);
+	ParticleGenerator* ptGen = new GeneradorGaussiano(Vector3(50), Vector3(35), 1, modelBomb, false);
+	partGenerator.push_back(ptGen);
+	ptGen = new GeneradorNormal(Vector3(50), Vector3(35), 0.5, modelWindPower, false);
 	partGenerator.push_back(ptGen);
 	/*particles.push_back(new Firework(3, 10, Vector3(0,0,0), Vector3(0), Vector3(0), Vector3(0,10,0), 0.99, 5, 10, 3, 1, Vector3(0, 0, 125)));
 	particles.push_back(new Particle(Vector3(0, -10, 0), Vector3(0),  Vector3(0, 1, 0), 0.99, 5, 100, 10, 1, Vector3(0, 0, 0)));*/
@@ -40,10 +43,14 @@ void ParticleSystem::update(double t) {
 		elapsedCoolDown = 0;
 	}
 
-	myForceRegistry->updateForces(t);
+	//myForceRegistry->updateForces(t);
 
 	for (auto it = particles.begin(); it != particles.end(); it++) {
 		(*it)->integrate(t);
+		if (dynamic_cast<PowerUps*>(*it) != nullptr)
+		{
+			dynamic_cast<PowerUps*>(*it)->checkCollisions();
+		}
 		if (!(*it)->isAlive()) killList.push_back(it);
 	}
 
@@ -57,7 +64,7 @@ void ParticleSystem::update(double t) {
 			Firework* fire = static_cast<Firework*>(*killList[i]);
 			particles.splice(particles.end(),fire->explode(particles));
 		}
-		myForceRegistry->deletePartReg(p);
+		//myForceRegistry->deletePartReg(p);
 		particles.erase(killList.at(i));
 		delete p;
 	}

@@ -1,11 +1,12 @@
 #include "WindRigid.h"
-WindRigid::WindRigid(Vector3 wndVel, Vector3 positon, double vol, double konstant1, double konstant2)
+WindRigid::WindRigid(Vector3 wndVel, Vector3 positon, double vol, double konstant1, double konstant2, double duration)
 {
 	windVel = wndVel;
 	pos = positon;
 	volume = vol;
 	k1 = konstant1;
 	k2 = konstant2;
+	setDuration(duration);
 }
 
 bool WindRigid::isInBounds(RigidBody* p)

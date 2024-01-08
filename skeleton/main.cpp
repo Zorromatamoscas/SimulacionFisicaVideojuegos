@@ -72,7 +72,7 @@ void initPhysics(bool interactive)
 
 	//myParticles = new ParticleSystem();
 	myRigids = new RigidSystem(gPhysics, gScene, 100);
-	myParticles = new ParticleSystem();
+	//myParticles = new ParticleSystem(myRigids,10);
 
 
 	}
@@ -122,34 +122,8 @@ void keyPress(unsigned char key, const PxTransform& camera)
 
 	switch(toupper(key))
 	{
-	//case 'B': break;
-	//case ' ':	break;
-	case 'P':
-	{
-		//Se crea y se añade al vector de balas
-		std::cout << "pium" << std::endl;
-
-		break;
-	}
-	case 'E':
-	{
-		if (myParticles != nullptr)myParticles->explosion();
-		if (myRigids != nullptr)myRigids->explosion();
-		break;
-	}
-	case 'Z':
-	{
-		if (myParticles != nullptr)myParticles->Engorda();
-		break;
-	}
-	case 'X':
-	{
-		if (myParticles != nullptr)myParticles->Adelgaza();
-		break;
-	}
 
 	default:
-		if (myParticles != nullptr)myParticles->Adelgaza();
 		break;
 	}
 }

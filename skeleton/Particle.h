@@ -89,10 +89,10 @@ public:
 	inline double getInvMass() { return inv_myMass; }
 	inline void setDuration(float dur) { lifeTime = dur; }
 
-	Particle* Particle::clone(Vector3 newPos,Vector3 newVel, float newLifeTime) const {
+	virtual Particle* Particle::clone(Vector3 newPos,Vector3 newVel, float newLifeTime) const {
 		return new Particle(newPos, newVel, damping, myMass, mySpeed, newLifeTime, scaleValue, myColor);
 	}
-	Particle* Particle::clone( Vector3 newVel,  float newLifeTime) const {
+	virtual Particle* Particle::clone( Vector3 newVel,  float newLifeTime) const {
 		return new Particle(pose.p, newVel, damping, myMass, mySpeed, newLifeTime, scaleValue, myColor);
 	}
 

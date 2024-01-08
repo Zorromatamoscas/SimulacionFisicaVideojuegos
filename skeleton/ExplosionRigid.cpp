@@ -15,8 +15,4 @@ void ExplosionRigid::updateForce(RigidBody* p, double t)
 		f = (strength / pow(r, 2)) * diff * exp(-t / timeConstant);
 		p->addForce(f);
 	}
-	if (activated && updateTime(t)) {
-		activated = false;
-		resetTime();
-	}
 }

@@ -19,11 +19,29 @@ private:
 	ExplosionRigid* explGen = nullptr;
 	WindRigid* windGen = nullptr;
 	RigidBody* model2 = nullptr;
+	Car* player1;
+	Car* player2;
 public:
 	RigidSystem(PxPhysics* fisicas, PxScene* escena, int maxRigids);
 	~RigidSystem();
 	void update(double t);
 	void explosion();
+	inline RigidsRegistry* getRegistry()
+	{
+		return myForceRegistry;
+	}
+	inline std::list<RigidBody*> getItems()
+	{
+		return particles;
+	}
+	inline Car* getPlayer1()
+	{
+		return player1;
+	}
+	inline Car* getPlayer2()
+	{
+		return player2;
+	}
 };
 
 

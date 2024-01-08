@@ -10,7 +10,7 @@ protected:
 	bool isInBounds(RigidBody* p);
 	double k1, k2;
 public:
-	WindRigid(Vector3 wndVel, Vector3 positon, double vol, double konstant1, double konstant2);
+	WindRigid(Vector3 wndVel, Vector3 positon, double vol, double konstant1, double konstant2, double duration);
 	virtual void updateForce(RigidBody* p, double t);
 };
 
