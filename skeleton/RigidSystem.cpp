@@ -10,8 +10,8 @@ RigidSystem::RigidSystem(PxPhysics* fisicas, PxScene* escena, int maxRigids) {
 	//partGenerator.push_back(ptGen);
 	explGen = new ExplosionRigid(Vector3(0, 10, 0), 1000, 500000, 5);
 	windGen = new WindRigid(Vector3(1000, 0, 0), Vector3(0, 0, 0), 100, 1, 0,15);
-	player1= new Car(fisicas, escena, Vector3(-120, 10, 0), true);
-	player2= new Car(fisicas, escena, Vector3(120, 10, 0), false);
+	player1= new Car(fisicas, escena, Vector3(-80, 10, 0), true);
+	player2= new Car(fisicas, escena, Vector3(80, 30, 0), false);
 }
 
 RigidSystem::~RigidSystem() {

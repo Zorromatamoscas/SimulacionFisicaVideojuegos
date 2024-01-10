@@ -41,8 +41,9 @@ public:
 		//masa simulada a una centesima de la velocidad
 		myMass = mass* pow(1/scalingValue,2);
 		inv_myMass = 1 / myMass;
-		myRadius = 1;
+		myRadius = 3;
 		if (!model)myShape = new RenderItem(CreateShape(physx::PxSphereGeometry(myRadius)), &pose, Vector4(color.x, color.y, color.z, 1));
+		else myShape = nullptr;
 
 	}
 	Particle(const PxVec3 pos, PxShape* form, Vector3 color, bool model = false)
@@ -83,8 +84,10 @@ public:
 
 	virtual ~Particle()
 	{
+		if (myShape != nullptr) {
 			myShape->release();
 			myShape = nullptr;
+		}
 	}
 	inline double getInvMass() { return inv_myMass; }
 	inline void setDuration(float dur) { lifeTime = dur; }

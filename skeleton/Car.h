@@ -1,5 +1,7 @@
 #pragma once
 #include "gameObject.h"
+#include <cmath>
+#define PI 3.14159265358979323846
 class Car: public GameObject
 {
 private:
@@ -16,6 +18,7 @@ public:
 	virtual ~Car();
 
 	void accelerate();
+	void deccelerate();
 	void rotate() {};
 	void checkCollision(GameObject* other);
 	inline float getColliderRadius()

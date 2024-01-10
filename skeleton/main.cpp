@@ -52,7 +52,7 @@ void initPhysics(bool interactive)
 
 	gPhysics = PxCreatePhysics(PX_PHYSICS_VERSION, *gFoundation, PxTolerancesScale(),true,gPvd);
 
-	gMaterial = gPhysics->createMaterial(0.5f, 0.5f, 0.6f);
+	gMaterial = gPhysics->createMaterial(0.0f, 0.0f, 0.0f);
 
 	// For Solid Rigids +++++++++++++++++++++++++++++++++++++
 	PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
@@ -72,7 +72,7 @@ void initPhysics(bool interactive)
 
 	//myParticles = new ParticleSystem();
 	myRigids = new RigidSystem(gPhysics, gScene, 100);
-	//myParticles = new ParticleSystem(myRigids,10);
+	myParticles = new ParticleSystem(myRigids,10);
 
 
 	}
@@ -118,11 +118,23 @@ void cleanupPhysics(bool interactive)
 // Function called when a key is pressed
 void keyPress(unsigned char key, const PxTransform& camera)
 {
-	PX_UNUSED(camera);
+	//PX_UNUSED(camera);
+
 
 	switch(toupper(key))
 	{
-
+	case 'W':
+		myRigids->getPlayer1()->accelerate();
+		break;
+	case 'S':
+		myRigids->getPlayer1()->deccelerate();
+		break;
+	case 'O':
+		myRigids->getPlayer2()->accelerate();
+		break;
+	case 'L':
+		myRigids->getPlayer2()->deccelerate();
+		break;
 	default:
 		break;
 	}

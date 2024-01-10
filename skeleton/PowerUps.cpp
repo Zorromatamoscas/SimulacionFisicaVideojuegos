@@ -1,5 +1,5 @@
 #include "PowerUps.h"
-PowerUps::PowerUps(Vector3 pos, Vector3 color, RigidSystem* system, bool model) : Particle(pos, Vector3(0), 0.99, 0.0f, 0.0f, 15, 0.0f, color,model)
+PowerUps::PowerUps(Vector3 pos, Vector3 color, RigidSystem* system, bool model) : Particle(Vector3(pos.x,5,pos.z), Vector3(0), 0.99, 0.0f, 0.0f, 15, 0.0f, color, model)
 {
 	mySystem = system;
 }

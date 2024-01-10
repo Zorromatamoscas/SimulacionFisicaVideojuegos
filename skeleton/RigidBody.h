@@ -35,7 +35,7 @@ public:
 		myFisicas = fisicas;
 		myPos = pos;
 
-		mMaterial = fisicas->createMaterial(0.5f, 0.5f, 0.1f); // static friction, dynamic friction,
+		mMaterial = fisicas->createMaterial(0.0f, 0.0f, 0.1f); // static friction, dynamic friction,
 		// restitution
 		myRigid = fisicas->createRigidDynamic(PxTransform(pos));
 		lifeTime = lft;
