@@ -16,7 +16,7 @@ public:
 			// Si se acaba el tiempo del generador, borralo
 			if (it->first->updateTime(t))
 			{
-				deletePartReg(it->second);
+				it->first->deactivate();
 			}
 		}
 	}

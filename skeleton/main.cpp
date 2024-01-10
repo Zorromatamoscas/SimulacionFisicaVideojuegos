@@ -129,12 +129,23 @@ void keyPress(unsigned char key, const PxTransform& camera)
 	case 'S':
 		myRigids->getPlayer1()->deccelerate();
 		break;
-	case 'O':
+	case 'D':
+		myRigids->getPlayer1()->rotate(true);
+		break;
+	case 'A':
+		myRigids->getPlayer1()->rotate(false);
+		break;
+	case 'J':
 		myRigids->getPlayer2()->accelerate();
 		break;
-	case 'L':
+	case 'U':
 		myRigids->getPlayer2()->deccelerate();
 		break;
+	case 'K':
+		myRigids->getPlayer2()->rotate(true);
+		break;
+	case 'H':
+		myRigids->getPlayer2()->rotate(false);
 	default:
 		break;
 	}

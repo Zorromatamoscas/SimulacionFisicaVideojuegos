@@ -60,11 +60,7 @@ void ParticleSystem::update(double t) {
 	for (int i = 0; i <initialSize; i++) {
 		Particle* p = *killList.at(i);
 		
-		if (typeid(static_cast<Firework*>(*killList[i])) == typeid(Firework*))
-		{
-			Firework* fire = static_cast<Firework*>(*killList[i]);
-			particles.splice(particles.end(),fire->explode(particles));
-		}
+
 		//myForceRegistry->deletePartReg(p);
 		particles.erase(killList.at(i));
 		delete p;

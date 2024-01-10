@@ -19,7 +19,7 @@ public:
 
 	void accelerate();
 	void deccelerate();
-	void rotate() {};
+	void rotate(bool drcha);
 	void checkCollision(GameObject* other);
 	inline float getColliderRadius()
 	{
@@ -27,7 +27,7 @@ public:
 	}
 	inline Vector3 getPos()
 	{
-		return myPos;
+		return myBody->getRigid()->getGlobalPose().p;
 	}
 	RigidBody* Car::getBody()
 	{

@@ -7,7 +7,6 @@ private:
 	double radius;
 	float strength;
 	float timeConstant;
-	bool activated;
 	Vector3 pos;
 
 public:

@@ -18,7 +18,7 @@ bool WindRigid::isInBounds(RigidBody* p)
 }
 void WindRigid::updateForce(RigidBody* p, double t)
 {
-	if (isInBounds(p)) {
+	if (activated && isInBounds(p)) {
 
 		Vector3 pVel = p->getVel();
 		Vector3 diffVel = windVel - pVel;
