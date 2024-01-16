@@ -10,7 +10,7 @@ public:
 	{
 		if (car->isPlayer1()) car = mySystem->getPlayer2();
 		else car = mySystem->getPlayer1();
-		mySystem->getRegistry()->addRegistry(new ExplosionRigid(pose.p, 50, 500000, 3), car->getBody());
+		mySystem->getRegistry()->addRegistry(new WindRigid(Vector3(0, 0, -1000), Vector3(0, 0, 0), 100, 1, 0,8), car->getBody());
 		lifeTime = -1;
 	}
 	virtual Particle* clone(Vector3 newPos, Vector3 newVel, float newLifeTime) const {
