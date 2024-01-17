@@ -52,7 +52,7 @@ public:
 		myForce = Vector3(0);
 		scaleValue = 0;
 		//myGravity = gravity*(pow((scalingValue),2));
-		lifeTime = 1000000;
+		lifeTime = 10000000;
 		damping = 0;
 		mySpeed = 0;
 		myColor = color;

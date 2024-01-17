@@ -8,8 +8,7 @@ ParticleSystem::ParticleSystem(RigidSystem* system, float coolDown) {
 	partGenerator.push_back(ptGen);
 	ptGen = new GeneradorNormal(Vector3(0), Vector3(100), 0.5, modelWindPower, false);
 	partGenerator.push_back(ptGen);
-	/*particles.push_back(new Firework(3, 10, Vector3(0,0,0), Vector3(0), Vector3(0), Vector3(0,10,0), 0.99, 5, 10, 3, 1, Vector3(0, 0, 125)));
-	particles.push_back(new Particle(Vector3(0, -10, 0), Vector3(0),  Vector3(0, 1, 0), 0.99, 5, 100, 10, 1, Vector3(0, 0, 0)));*/
+	//particles.push_back(new Particle(Vector3(0, -10, 0), Vector3(0),  Vector3(0, 1, 0), 0.99, 5, 100, 10, 1, Vector3(0, 0, 0)));*/
 	myCooldown = coolDown;
 	elapsedCoolDown = 0;
 }
@@ -23,6 +22,17 @@ ParticleSystem::~ParticleSystem() {
 	// Eliminas todas las particulas
 	for (Particle* p : particles) delete p;
 	particles.clear();
+}
+void ParticleSystem::celebrate()
+{
+	GeneradorNormal* ptGen = new GeneradorNormal(Vector3(0), Vector3(100), 1, 
+		new Firework(3, 10, Vector3(0, 0, 0), Vector3(0, 10, 0), 0.99, 5, 40, 3, 1, Vector3(0, 1, 0),true), false);
+	for (int i = 0; i < 5; i++) {
+		ptGen->generateParticles();
+
+		particlesFire.push_back(new Firework(3, 10, Vector3(0, 0, 0), ptGen->getNewVel(), 0.99, 5, 40, 3, 1, Vector3(0, 1, 0)));
+	}
+	delete ptGen;
 }
 void ParticleSystem::explosion()
 {
@@ -54,16 +64,33 @@ void ParticleSystem::update(double t) {
 		catch(...){}
 		if (!(*it)->isAlive()) killList.push_back(it);
 	}
+	for (auto it = particlesFire.begin(); it != particlesFire.end(); it++) {
+		(*it)->integrate(t);
+		if (!(*it)->isAlive()) killListFire.push_back(it);
+	}
 
 	// Borras las particulas muertas
 	int initialSize = killList.size();
 	for (int i = 0; i <initialSize; i++) {
 		Particle* p = *killList.at(i);
-		
 
 		//myForceRegistry->deletePartReg(p);
 		particles.erase(killList.at(i));
 		delete p;
 	}
 	killList.clear();
+	initialSize = killListFire.size();
+	for (int i = 0; i < initialSize; i++) {
+		Particle* p = *killListFire.at(i);
+		if (typeid(static_cast<Firework*>(*killListFire[i])) == typeid(Firework*))
+		{
+			Firework* fire = static_cast<Firework*>(*killListFire[i]);
+			particlesFire.splice(particlesFire.end(), fire->explode(particlesFire));
+		}
+		//myForceRegistry->deletePartReg(p);
+		particlesFire.erase(killListFire.at(i));
+		delete p;
+	}
+	
+	killListFire.clear();
 }

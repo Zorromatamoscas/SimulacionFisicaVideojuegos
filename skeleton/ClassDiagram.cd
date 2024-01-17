@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="RigidSystem">
+    <Position X="4.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>wAEAAAAQAADABAIAAQwAAAAAAAgAFAAAAAIAEAAMAQA=</HashCode>
+      <FileName>RigidSystem.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="windGen" />
+      <Field Name="explGen" />
+      <Field Name="player1" />
+      <Field Name="myForceRegistry" />
+      <Field Name="fltGen" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="WindRigid">
+    <Position X="7.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAQAAAAAIAAAJQAAAAAAEAAAAACAAA=</HashCode>
+      <FileName>WindRigid.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ExplosionRigid">
+    <Position X="1" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAACAAACAAAAAAAAIAAAAAAAAAAQAAgAABAAAA=</HashCode>
+      <FileName>ExplosionRigid.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Car">
+    <Position X="7.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAIAAQWAAAAAAAYAgAAAIAMAAAAAMAAAAAAAAI=</HashCode>
+      <FileName>Car.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RigidsRegistry">
+    <Position X="1" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAABAAAAAAAAAAgAAA=</HashCode>
+      <FileName>RigidsRegistry.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="floatRigid">
+    <Position X="4.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAiAAAAAQAAAAAAAAAAQAAAAAAAAACAAA=</HashCode>
+      <FileName>floatRigid.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ParticleSystem">
+    <Position X="14.75" Y="0.75" Width="1.5" />
+    <Members>
+      <Method Name="Adelgaza" Hidden="true" />
+      <Field Name="anchor" Hidden="true" />
+      <Field Name="dummyParticle" Hidden="true" />
+      <Method Name="Engorda" Hidden="true" />
+      <Field Name="explGen" Hidden="true" />
+      <Method Name="explosion" Hidden="true" />
+      <Field Name="fltGen" Hidden="true" />
+      <Field Name="gravGen" Hidden="true" />
+      <Field Name="sprgGen" Hidden="true" />
+      <Field Name="sprgGen1" Hidden="true" />
+      <Field Name="windGen" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AQQAAIAYAAIABAMAASgAQAIAAAIEBEBAAAAgEgBMAAA=</HashCode>
+      <FileName>ParticleSystem.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="myForceRegistry" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ParticleForceRegistry">
+    <Position X="18.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAABAAAAAAAAAAgAAA=</HashCode>
+      <FileName>ParticleForceRegistry.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RigidForceGenerator">
+    <Position X="10" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIEAAAAAACAAAABEAQAAABgAAAQACAAAAAAAAAAA=</HashCode>
+      <FileName>RigidForceGenerator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameObject">
+    <Position X="7.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>gameObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Firework">
+    <Position X="18.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAACAAACCAAAIAAAAAAAABAEAAAAAA=</HashCode>
+      <FileName>Firework.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Particle">
+    <Position X="20.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAkAIUAMAQABSAACACIAAAACAAAAIAACBRAgECEAAAA=</HashCode>
+      <FileName>Particle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GeneradorGaussiano">
+    <Position X="14.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAIAAAgAIAAAAAIAIQAAAAAAQAAAQA=</HashCode>
+      <FileName>GeneradorGaussiano.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GeneradorNormal">
+    <Position X="16.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAQCAAAAAAAgAIAAAAAAAIQAAAAAAQABAQA=</HashCode>
+      <FileName>GeneradorNormal.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ParticleGenerator">
+    <Position X="18.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAQCAYIAAAAABAAAQIAAAAAAAAAAAAAAAAAACEA=</HashCode>
+      <FileName>ParticleGenerator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -287,8 +287,11 @@ void startRender(const PxVec3& cameraEye, const PxVec3& cameraDir, PxReal clipNe
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// Display text
-	glColor4f(1.0f, 0.2f, 0.2f, 1.0f);
-	drawText(display_text, 0, 0);
+	drawText(texts[0], textPositions[0].first, textPositions[0].second);
+	for (int i = 1; i < texts.size(); i++) {
+		glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+		drawText(texts[i], textPositions[i].first, textPositions[i].second);
+	}
 
 	// Setup camera
 	glMatrixMode(GL_PROJECTION);

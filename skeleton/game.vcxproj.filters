@@ -71,6 +71,9 @@
     <ClCompile Include="PowerUps.cpp">
       <Filter>PowerUps</Filter>
     </ClCompile>
+    <ClCompile Include="floatRigid.cpp">
+      <Filter>ForceRigids</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -149,6 +152,9 @@
     <ClInclude Include="WindPowerUp.h">
       <Filter>PowerUps</Filter>
     </ClInclude>
+    <ClInclude Include="floatRigid.h">
+      <Filter>ForceRigids</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">
@@ -172,5 +178,8 @@
     <Filter Include="PowerUps">
       <UniqueIdentifier>{29735408-789d-4fa7-a1ce-2058cedf859e}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

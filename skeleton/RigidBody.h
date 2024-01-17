@@ -104,6 +104,10 @@ public:
 	{
 		mMaterial->setRestitution(1);
 	}
+	inline float getHeight()
+	{
+		return mySize;
+	}
 
 };
 

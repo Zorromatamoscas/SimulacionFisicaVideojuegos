@@ -259,6 +259,7 @@
     <ClCompile Include="ExplosionRigid.cpp" />
     <ClCompile Include="Firework.cpp" />
     <ClCompile Include="FloatingGenerator.cpp" />
+    <ClCompile Include="floatRigid.cpp" />
     <ClCompile Include="ForceGenerator.cpp" />
     <ClCompile Include="gameObject.cpp" />
     <ClCompile Include="GaussianoRigido.cpp" />
@@ -290,6 +291,7 @@
     <ClInclude Include="ExplosionRigid.h" />
     <ClInclude Include="Firework.h" />
     <ClInclude Include="FloatingGenerator.h" />
+    <ClInclude Include="floatRigid.h" />
     <ClInclude Include="ForceGenerator.h" />
     <ClInclude Include="gameObject.h" />
     <ClInclude Include="GaussianoRigido.h" />
@@ -315,6 +317,9 @@
     <ClInclude Include="WindGenerator.h" />
     <ClInclude Include="WindPowerUp.h" />
     <ClInclude Include="WindRigid.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

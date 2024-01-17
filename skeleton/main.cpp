@@ -13,8 +13,23 @@
 #include<vector>
 #include "ParticleSystem.h"
 #include "RigidSystem.h"
+using namespace std;
 
-std::string display_text = "This is a test";
+vector<string> texts = {
+	"[ CHOQUES DE COCHES ]",
+	"Controles jugador 1: wasd",
+	"Controles jugador 2: uhjk",
+	"Rafael Vilches Hernandez"
+	""
+};
+
+std::vector<pair<float, float>> textPositions = {
+	{180, 450},
+	{0, 400},
+	{270, 400},
+	{10, 10},
+	{250,250}
+};
 
 
 using namespace physx;
@@ -37,6 +52,7 @@ ContactReportCallback gContactReportCallback;
 std::vector<Particle*> myBullets;
 ParticleSystem* myParticles=nullptr;
 RigidSystem* myRigids=nullptr;
+bool endgame = false;
 
 
 // Initialize physics engine
@@ -74,7 +90,6 @@ void initPhysics(bool interactive)
 	myRigids = new RigidSystem(gPhysics, gScene, 100);
 	myParticles = new ParticleSystem(myRigids,10);
 
-
 	}
 
 
@@ -90,6 +105,18 @@ void stepPhysics(bool interactive, double t)
 	//Se actualizan las balas
 	if(myParticles!=nullptr)myParticles->update(t);
 	if (myRigids != nullptr)myRigids->update(t);
+	if (myRigids->getPlayer1()->getPos().y < -5 && !endgame)
+	{
+		texts[0] = "PLAYER 2 GANA";
+		endgame = true;
+		myParticles->celebrate();
+	}
+	if (myRigids->getPlayer2()->getPos().y < -5 && !endgame)
+	{
+		texts[0] = "PLAYER 1 GANA";
+		endgame = true;
+		myParticles->celebrate();
+	}
 
 }
 

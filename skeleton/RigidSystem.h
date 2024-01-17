@@ -5,6 +5,7 @@
 #include "RigidsRegistry.h"
 #include "ExplosionRigid.h"
 #include "WindRigid.h"
+#include "floatRigid.h"
 #include "Car.h"
 class RigidSystem
 {
@@ -21,6 +22,7 @@ private:
 	RigidBody* model2 = nullptr;
 	Car* player1;
 	Car* player2;
+	floatRigid* fltGen = nullptr;
 public:
 	RigidSystem(PxPhysics* fisicas, PxScene* escena, int maxRigids);
 	~RigidSystem();

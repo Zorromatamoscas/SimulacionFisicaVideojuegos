@@ -15,8 +15,10 @@ class ParticleSystem
 {
 private:
 	std::list<Particle*> particles;
+	std::list<Particle*> particlesFire;
 	std::list<ParticleGenerator*> partGenerator;
 	std::vector<std::list<Particle*>::iterator> killList;
+	std::vector<std::list<Particle*>::iterator> killListFire;
 	ParticleForceRegistry* myForceRegistry;
 	GravityGenerator* gravGen = nullptr;
 	WindGenerator* windGen = nullptr;
@@ -35,6 +37,7 @@ public:
 	void update(double t);
 	ParticleGenerator* getParticleGenerator(std::string name);
 	void explosion();
+	void celebrate();
 	void generateFireworkSystem();
 	inline void Engorda()
 	{

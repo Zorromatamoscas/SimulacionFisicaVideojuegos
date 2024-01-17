@@ -33,6 +33,10 @@ public:
 	{
 		return myBody;
 	}
+	RigidBody* Car::getBumper()
+	{
+		return myBumper;
+	}
 	inline bool isPlayer1()
 	{
 		return player1;
